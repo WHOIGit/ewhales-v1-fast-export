@@ -16,6 +16,10 @@ func main() {
 	helpFlag := flag.Bool("h", false, "Print help info and exit")
 	helpFlagLong := flag.Bool("help", false, "Print help info and exit")
 
+	memStatsFlag := flag.Bool("memstats", false, "Enable recording of memory statistics")
+	memStatsIntervalFlag := flag.Int("memstats-interval", 1, "Interval in seconds to record memory statistics")
+	memStatsFileFlag := flag.String("memstats-file", "memstats.csv", "File to write memory statistics to")
+
 	flag.Usage = func() {
 		fmt.Println("eWHALES v1 Exporter Tool")
 		fmt.Println("Usage: exporter [options]")
@@ -28,6 +32,10 @@ func main() {
 	if *helpFlag || *helpFlagLong {
 		flag.Usage()
 		return
+	}
+
+	if *memStatsFlag {
+		StartMemoryStatsRecording(*memStatsIntervalFlag, *memStatsFileFlag)
 	}
 
 	// 1. Configuration Phase

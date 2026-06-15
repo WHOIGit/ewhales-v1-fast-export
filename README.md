@@ -10,6 +10,8 @@ The `my.cnf` and `convert_inserts.py` files are intended for use with database b
 
 The Go-based tool in this repository is intended to work directly with a live database. It extracts the required records and produces a CSV output in the exact format expected for the v1 eWHALES data processing pipeline. 
 
+It is intended to be lightweight and fast, but without putting strain on the database, using a "streaming" approach that reads and writes records in batches.
+
 ### Building the Tool
 
 Ensure you have Go installed on your system. To compile the binary, run:
@@ -27,11 +29,23 @@ You can run the compiled binary directly. Use the `--help` flag to see available
 Available flags:
 - `-config`: Path to the configuration file (default is `config.json`).
 - `-progress`: Enable terminal progress bars for the querying and serialization phases.
+- `-memstats`: Enable recording of memory statistics to a file.
+- `-memstats-interval`: Interval in seconds to record memory statistics (default 1).
+- `-memstats-file`: File to write memory statistics to (default is `memstats.csv`).
 - `-h` / `--help`: Print help info and exit.
 
 Example usage:
 ```bash
 ./exporter -progress -config custom_config.json
+```
+
+### Memory Statistics
+
+You can monitor the exporter's memory footprint while it runs. When the `-memstats` flag is enabled, a background routine will periodically log the memory statistics to a CSV file. It records the internal Go Heap Allocations as well as the Resident Set Size (RSS) of the entire process tree using `gopsutil`.
+
+Example memory profiling usage:
+```bash
+./exporter -memstats -memstats-interval=5 -memstats-file="metrics.csv"
 ```
 
 ### Configuration
