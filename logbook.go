@@ -27,6 +27,7 @@ type LogbookEntry struct {
 	SeaState      string `json:"sea_state"`
 	ShipHeading   string `json:"ship_heading"`
 	ShipSightings string `json:"ship_sightings"`
+	Weather	      string `json:"weather"`
 	WindDirection string `json:"wind_direction"`
 	WindForce     string `json:"wind_force"`
 }

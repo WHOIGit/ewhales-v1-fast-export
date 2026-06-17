@@ -73,7 +73,7 @@ func (s *CSVSerializer) Serialize(data PivotData, onProgress func(processed int,
 	keys := []string{
 		"post_id", "logbook_id", "bottom", "cloud_cover", "depth", "depth_unit",
 		"entry_date", "landmark", "latitude", "local_time", "longitude",
-		"page", "sea_state", "ship_heading", "ship_sightings", "wind_direction", "wind_force",
+		"page", "sea_state", "ship_heading", "ship_sightings", "weather", "wind_direction", "wind_force",
 	}
 	var headers []string
 	for _, k := range keys {
@@ -93,7 +93,7 @@ func (s *CSVSerializer) Serialize(data PivotData, onProgress func(processed int,
 			fmt.Sprint(lbe.PostID), logbookName, lbe.Bottom, lbe.CloudCover,
 			lbe.Depth, lbe.DepthUnit, lbe.EntryDate, lbe.Landmark, lbe.Latitude,
 			lbe.LocalTime, lbe.Longitude, lbe.Page, lbe.SeaState, lbe.ShipHeading,
-			lbe.ShipSightings, lbe.WindDirection, lbe.WindForce,
+			lbe.ShipSightings, lbe.Weather, lbe.WindDirection, lbe.WindForce,
 		}
 		if err := lbeWriter.Write(record); err != nil {
 			return err

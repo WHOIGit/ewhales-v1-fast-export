@@ -18,6 +18,7 @@
     "sea_state": "Sea State",
     "ship_heading": "Ship Heading/Course",
     "ship_sightings": "Ship Sightings",
+    "weather": "Weather",
     "wind_direction": "Wind Direction",
     "wind_force": "Wind Speed/Force"
   },
@@ -41,6 +42,7 @@
       "sea_state",
       "ship_heading",
       "ship_sightings",
+      "weather",
       "wind_direction",
       "wind_force"
     ]

@@ -120,6 +120,7 @@ func processBatches(db *sql.DB, config *Config, postIDs []uint, onProgress func(
 					SeaState:      props["sea_state"],
 					ShipHeading:   props["ship_heading"],
 					ShipSightings: props["ship_sightings"],
+					Weather: props["weather"],
 					WindDirection: props["wind_direction"],
 					WindForce:     props["wind_force"],
 				}
