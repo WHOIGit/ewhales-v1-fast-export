@@ -62,6 +62,9 @@ The tools use JSON files for configuration:
 - `client_config.json`: Used by `ewhales-client` (contains database connection details and `server_address`).
 - `server_config.json`: Used by `ewhales-server` (contains `listen_port`, `tls_cert_file`, `tls_key_file`, and CSV field mappings).
 
+**Filename Formatting (strftime):**
+The `csv_base_name` property in `config.json` and `server_config.json` supports Python-like `strftime` formats. For example, if you set `"csv_base_name": "export_%Y-%m-%d.csv"`, the resulting file will be dynamically named based on the current date, such as `export_2026-06-18.csv`.
+
 Ensure your configurations are correctly set up before running the tools.
 
 ### TLS Certificates

@@ -2,7 +2,7 @@
   "listen_port": 8443,
   "tls_cert_file": "server.crt",
   "tls_key_file": "server.key",
-  "csv_base_name": "network_export.csv",
+  "csv_base_name": "network_export_%Y%m%d_%H%M%S.csv",
   "ids_to_fieds": {
     "bottom": "Bottom",
     "cloud_cover": "Cloud Cover",

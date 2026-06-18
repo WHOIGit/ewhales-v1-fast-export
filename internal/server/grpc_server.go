@@ -19,6 +19,7 @@ import (
 	"github.com/agl/ewhales-v1-exporter/internal/models"
 	"github.com/agl/ewhales-v1-exporter/internal/serialize"
 	pb "github.com/agl/ewhales-v1-exporter/proto"
+	"github.com/tebeka/strftime"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 )
@@ -99,10 +100,17 @@ func (s *exportServer) ExportData(stream pb.ExporterService_ExportDataServer) er
 
 	log.Printf("Received total %d logbooks and %d entries", len(pivotData.Logbooks), len(pivotData.LogbookEntries))
 
+	// Format the output filename using strftime
+	baseName, err := strftime.Format(s.cfg.CSVBaseName, time.Now())
+	if err != nil {
+		log.Printf("Error formatting filename with strftime: %v. Using original config string.", err)
+		baseName = s.cfg.CSVBaseName
+	}
+
 	// Serialize data to CSV
 	serializer := &serialize.CSVSerializer{
-		LogbooksFile:       "logbooks_" + s.cfg.CSVBaseName,
-		LogbookEntriesFile: s.cfg.CSVBaseName,
+		LogbooksFile:       "logbooks_" + baseName,
+		LogbookEntriesFile: baseName,
 		IdsToFields:        s.cfg.IdsToFields,
 	}
 
