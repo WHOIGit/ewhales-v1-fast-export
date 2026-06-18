@@ -73,43 +73,70 @@ func (c *APIClient) SendBatch(data *models.PivotData) error {
 		return fmt.Errorf("stream not started")
 	}
 
-	batch := &pb.ExportBatch{}
-	for _, lb := range data.Logbooks {
-		batch.Logbooks = append(batch.Logbooks, &pb.Logbook{
-			PostId:    uint64(lb.PostID),
-			LogbookId: lb.LogbookID,
-		})
+	const maxChunkSize = 2000
+
+	// Send logbooks in chunks
+	for i := 0; i < len(data.Logbooks); i += maxChunkSize {
+		end := i + maxChunkSize
+		if end > len(data.Logbooks) {
+			end = len(data.Logbooks)
+		}
+
+		batch := &pb.ExportBatch{}
+		for _, lb := range data.Logbooks[i:end] {
+			batch.Logbooks = append(batch.Logbooks, &pb.Logbook{
+				PostId:    uint64(lb.PostID),
+				LogbookId: lb.LogbookID,
+			})
+		}
+
+		if err := c.stream.Send(&pb.ExportRequest{
+			Payload: &pb.ExportRequest_Batch{
+				Batch: batch,
+			},
+		}); err != nil {
+			return fmt.Errorf("failed to send logbooks batch: %v", err)
+		}
 	}
 
-	for _, entry := range data.LogbookEntries {
-		batch.Entries = append(batch.Entries, &pb.LogbookEntry{
-			PostId:        uint64(entry.PostID),
-			LogbookId:     uint64(entry.LogbookID),
-			Bottom:        entry.Bottom,
-			CloudCover:    entry.CloudCover,
-			Depth:         entry.Depth,
-			DepthUnit:     entry.DepthUnit,
-			EntryDate:     entry.EntryDate,
-			Landmark:      entry.Landmark,
-			Latitude:      entry.Latitude,
-			LocalTime:     entry.LocalTime,
-			Longitude:     entry.Longitude,
-			Page:          entry.Page,
-			SeaState:      entry.SeaState,
-			ShipHeading:   entry.ShipHeading,
-			ShipSightings: entry.ShipSightings,
-			Weather:       entry.Weather,
-			WindDirection: entry.WindDirection,
-			WindForce:     entry.WindForce,
-		})
-	}
+	// Send entries in chunks
+	for i := 0; i < len(data.LogbookEntries); i += maxChunkSize {
+		end := i + maxChunkSize
+		if end > len(data.LogbookEntries) {
+			end = len(data.LogbookEntries)
+		}
 
-	if err := c.stream.Send(&pb.ExportRequest{
-		Payload: &pb.ExportRequest_Batch{
-			Batch: batch,
-		},
-	}); err != nil {
-		return fmt.Errorf("failed to send batch: %v", err)
+		batch := &pb.ExportBatch{}
+		for _, entry := range data.LogbookEntries[i:end] {
+			batch.Entries = append(batch.Entries, &pb.LogbookEntry{
+				PostId:        uint64(entry.PostID),
+				LogbookId:     uint64(entry.LogbookID),
+				Bottom:        entry.Bottom,
+				CloudCover:    entry.CloudCover,
+				Depth:         entry.Depth,
+				DepthUnit:     entry.DepthUnit,
+				EntryDate:     entry.EntryDate,
+				Landmark:      entry.Landmark,
+				Latitude:      entry.Latitude,
+				LocalTime:     entry.LocalTime,
+				Longitude:     entry.Longitude,
+				Page:          entry.Page,
+				SeaState:      entry.SeaState,
+				ShipHeading:   entry.ShipHeading,
+				ShipSightings: entry.ShipSightings,
+				Weather:       entry.Weather,
+				WindDirection: entry.WindDirection,
+				WindForce:     entry.WindForce,
+			})
+		}
+
+		if err := c.stream.Send(&pb.ExportRequest{
+			Payload: &pb.ExportRequest_Batch{
+				Batch: batch,
+			},
+		}); err != nil {
+			return fmt.Errorf("failed to send entries batch: %v", err)
+		}
 	}
 
 	return nil
