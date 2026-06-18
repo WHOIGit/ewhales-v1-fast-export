@@ -1,16 +1,18 @@
-package main
+package serialize
 
 import (
 	"encoding/csv"
 	"fmt"
 	"os"
+
+	"github.com/agl/ewhales-v1-exporter/internal/models"
 )
 
 // Serializer is an interface for serializing the PivotData.
 // We are documenting this to show how easy it is to add a JSONSerializer, XMLSerializer, etc.
 // The main application logic will rely on this interface to decouple querying from output formatting.
 type Serializer interface {
-	Serialize(data PivotData, onProgress func(processed int, total int)) error
+	Serialize(data models.PivotData, onProgress func(processed int, total int)) error
 }
 
 // CSVSerializer implements Serializer for CSV format.
@@ -23,7 +25,7 @@ type CSVSerializer struct {
 // Serialize writes the PivotData out to CSV files.
 // It uses IdsToFields to map internal struct names to user-friendly headers.
 // It also maps LogbookEntry LogbookIDs to their corresponding Logbook string names.
-func (s *CSVSerializer) Serialize(data PivotData, onProgress func(processed int, total int)) error {
+func (s *CSVSerializer) Serialize(data models.PivotData, onProgress func(processed int, total int)) error {
 	totalItems := len(data.Logbooks) + len(data.LogbookEntries)
 	processed := 0
 	// Build Logbook mapping for entries

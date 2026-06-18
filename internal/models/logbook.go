@@ -1,4 +1,4 @@
-package main
+package models
 
 // Logbook represents a logbook entity.
 // In the EAV model, it is identified when a post_id has a 'logbook_id'
@@ -30,4 +30,11 @@ type LogbookEntry struct {
 	Weather	      string `json:"weather"`
 	WindDirection string `json:"wind_direction"`
 	WindForce     string `json:"wind_force"`
+}
+
+// PivotData acts as the central in-memory structure holding all parsed entities.
+// It is the resulting data structure after querying the EAV database and parsing the properties.
+type PivotData struct {
+	Logbooks       []Logbook
+	LogbookEntries []LogbookEntry
 }

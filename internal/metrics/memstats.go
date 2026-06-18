@@ -1,5 +1,5 @@
-// Package main includes memory statistics tracking.
-package main
+// Package metrics includes memory statistics tracking.
+package metrics
 
 import (
 	"encoding/csv"

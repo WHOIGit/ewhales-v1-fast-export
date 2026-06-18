@@ -1,0 +1,33 @@
+{
+  "host": "localhost",
+  "port": 3306,
+  "username": "root",
+  "password": "password",
+  "database": "ewhales",
+  "table": "logswp_postmeta",
+  "server_address": "localhost:8443",
+  "post_type_to_meta_keys": {
+    "logbook": [
+      "logbook_id"
+    ],
+    "logbook_entry": [
+      "logbook_id",
+      "bottom",
+      "cloud_cover",
+      "depth",
+      "depth_unit",
+      "entry_date",
+      "landmark",
+      "latitude",
+      "local_time",
+      "longitude",
+      "page",
+      "sea_state",
+      "ship_heading",
+      "ship_sightings",
+      "weather",
+      "wind_direction",
+      "wind_force"
+    ]
+  }
+}

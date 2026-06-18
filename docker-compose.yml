@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: ewhales
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./test/test_multiple_logbook_logbook_entries.sql:/docker-entrypoint-initdb.d/init.sql
+
+  server:
+    build:
+      context: .
+      target: server
+    ports:
+      - "8443:8443"
+    volumes:
+      - ./server_config.json:/app/server_config.json
+      - ./output:/app/output
+    environment:
+      - CONFIG_PATH=server_config.json
+
+  client:
+    build:
+      context: .
+      target: client
+    volumes:
+      - ./client_config.json:/app/client_config.json
+    environment:
+      - CONFIG_PATH=client_config.json
+    depends_on:
+      - mysql
+      - server

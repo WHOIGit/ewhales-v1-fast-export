@@ -6,6 +6,10 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/agl/ewhales-v1-exporter/internal/config"
+	"github.com/agl/ewhales-v1-exporter/internal/db"
+	"github.com/agl/ewhales-v1-exporter/internal/metrics"
+	"github.com/agl/ewhales-v1-exporter/internal/serialize"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/schollz/progressbar/v3"
 )
@@ -35,40 +39,40 @@ func main() {
 	}
 
 	if *memStatsFlag {
-		StartMemoryStatsRecording(*memStatsIntervalFlag, *memStatsFileFlag)
+		metrics.StartMemoryStatsRecording(*memStatsIntervalFlag, *memStatsFileFlag)
 	}
 
 	// 1. Configuration Phase
 	fmt.Println("Step 1: Configuration Phase")
-	config, err := LoadConfig(*configPath)
+	cfg, err := config.LoadConfig(*configPath)
 	if err != nil {
 		log.Fatalf("Error loading config: %v", err)
 	}
 
-	if config.Port == 0 {
-		config.Port = 3306
+	if cfg.Port == 0 {
+		cfg.Port = 3306
 	}
 
-	fmt.Printf("  - Database Host : %s\n", config.Host)
-	fmt.Printf("  - Database Port : %d\n", config.Port)
-	fmt.Printf("  - Database Name : %s\n", config.Database)
-	fmt.Printf("  - Database User : %s\n", config.Username)
-	fmt.Printf("  - Target Table  : %s\n", config.Table)
-	fmt.Printf("  - Logbooks CSV  : logbooks_%s\n", config.CSVBaseName)
-	fmt.Printf("  - Entries CSV   : %s\n", config.CSVBaseName)
+	fmt.Printf("  - Database Host : %s\n", cfg.Host)
+	fmt.Printf("  - Database Port : %d\n", cfg.Port)
+	fmt.Printf("  - Database Name : %s\n", cfg.Database)
+	fmt.Printf("  - Database User : %s\n", cfg.Username)
+	fmt.Printf("  - Target Table  : %s\n", cfg.Table)
+	fmt.Printf("  - Logbooks CSV  : logbooks_%s\n", cfg.CSVBaseName)
+	fmt.Printf("  - Entries CSV   : %s\n", cfg.CSVBaseName)
 
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s",
-		config.Username, config.Password, config.Host, config.Port, config.Database)
+		cfg.Username, cfg.Password, cfg.Host, cfg.Port, cfg.Database)
 
 	// 2. Database Connection Phase
 	fmt.Println("\nStep 2: Database Connection Phase")
-	db, err := sql.Open("mysql", dsn)
+	dbConn, err := sql.Open("mysql", dsn)
 	if err != nil {
 		log.Fatalf("Error opening database: %v", err)
 	}
-	defer db.Close()
+	defer dbConn.Close()
 
-	if err := db.Ping(); err != nil {
+	if err := dbConn.Ping(); err != nil {
 		log.Fatalf("Error connecting to database: %v", err)
 	}
 	fmt.Println("Successfully connected to MySQL database.")
@@ -85,17 +89,17 @@ func main() {
 			queryBar.Set(processed)
 		}
 	}
-	pivotData, err := QueryPivotData(db, config, queryProgressCallback)
+	pivotData, err := db.QueryPivotData(dbConn, cfg, queryProgressCallback)
 	if err != nil {
 		log.Fatalf("Error querying pivot data: %v", err)
 	}
 
 	// 4. Serialization Phase
 	fmt.Println("\nStep 4: Serialization Phase")
-	serializer := &CSVSerializer{
-		LogbooksFile:       "logbooks_" + config.CSVBaseName,
-		LogbookEntriesFile: config.CSVBaseName,
-		IdsToFields:        config.IdsToFields,
+	serializer := &serialize.CSVSerializer{
+		LogbooksFile:       "logbooks_" + cfg.CSVBaseName,
+		LogbookEntriesFile: cfg.CSVBaseName,
+		IdsToFields:        cfg.IdsToFields,
 	}
 
 	var serializeProgressCallback func(int, int)

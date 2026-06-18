@@ -1,34 +1,48 @@
-# Stage 1: Build the Go application
-FROM golang:alpine AS builder
+# Build stage
+FROM golang:1.21 AS builder
 
 WORKDIR /app
 
-# Install dependencies
+# Install protoc dependencies
+RUN apt-get update && apt-get install -y protobuf-compiler
+
+# Download go modules
 COPY go.mod go.sum ./
-# If go.mod has a version newer than the alpine image, it might complain. 
-# We can safely adjust the version or just download.
 RUN go mod download
 
+# Install protobuf go generators
+RUN go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+RUN go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+
 # Copy source code
-COPY *.go ./
+COPY . .
 
-# Build the exporter binary statically
-RUN CGO_ENABLED=0 go build -o exporter .
+# Generate protobufs
+RUN protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative proto/export.proto
 
-# Stage 2: Final lightweight image
-FROM python:3.11-alpine
+# Build binaries
+RUN CGO_ENABLED=0 GOOS=linux go build -o /ewhales-local ./cmd/local
+RUN CGO_ENABLED=0 GOOS=linux go build -o /ewhales-server ./cmd/server
+RUN CGO_ENABLED=0 GOOS=linux go build -o /ewhales-client ./cmd/client
 
+# Final stage for server
+FROM alpine:latest AS server
 WORKDIR /app
+COPY --from=builder /ewhales-server /app/ewhales-server
+COPY server_config.json /app/
+EXPOSE 8443
+CMD ["/app/ewhales-server", "-config", "server_config.json"]
 
-# Copy the compiled Go binary
-COPY --from=builder /app/exporter /usr/local/bin/exporter
+# Final stage for client
+FROM alpine:latest AS client
+WORKDIR /app
+COPY --from=builder /ewhales-client /app/ewhales-client
+COPY client_config.json /app/
+CMD ["/app/ewhales-client", "-config", "client_config.json"]
 
-# Copy the Python scripts
-COPY convert_inserts.py /usr/local/bin/convert_inserts.py
-COPY anonymize.py /usr/local/bin/anonymize.py
-
-# Ensure scripts are executable
-RUN chmod +x /usr/local/bin/exporter /usr/local/bin/convert_inserts.py /usr/local/bin/anonymize.py
-
-# Default entrypoint to interactive shell
-CMD ["/bin/sh"]
+# Final stage for local
+FROM alpine:latest AS local
+WORKDIR /app
+COPY --from=builder /ewhales-local /app/ewhales-local
+COPY config.json /app/
+CMD ["/app/ewhales-local", "-config", "config.json"]

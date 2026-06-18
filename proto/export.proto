@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package ewhales.export.v1;
+
+option go_package = "github.com/agl/ewhales-v1-exporter/proto;exportpb";
+
+service ExporterService {
+  rpc ExportData (stream ExportRequest) returns (ExportResponse);
+}
+
+message ExportRequest {
+  oneof payload {
+    ExportMetadata metadata = 1;
+    ExportBatch batch = 2;
+  }
+}
+
+message ExportMetadata {
+  int64 expected_logbooks = 1;
+  int64 expected_entries = 2;
+}
+
+message ExportBatch {
+  repeated Logbook logbooks = 1;
+  repeated LogbookEntry entries = 2;
+}
+
+message ExportResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message Logbook {
+  uint64 post_id = 1;
+  string logbook_id = 2;
+}
+
+message LogbookEntry {
+  uint64 post_id = 1;
+  uint64 logbook_id = 2;
+  string bottom = 3;
+  string cloud_cover = 4;
+  string depth = 5;
+  string depth_unit = 6;
+  string entry_date = 7;
+  string landmark = 8;
+  string latitude = 9;
+  string local_time = 10;
+  string longitude = 11;
+  string page = 12;
+  string sea_state = 13;
+  string ship_heading = 14;
+  string ship_sightings = 15;
+  string weather = 16;
+  string wind_direction = 17;
+  string wind_force = 18;
+}
