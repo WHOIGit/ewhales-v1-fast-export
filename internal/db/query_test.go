@@ -1,4 +1,4 @@
-package main
+package db
 
 import (
 	"database/sql"
@@ -6,12 +6,13 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/agl/ewhales-v1-exporter/internal/config"
 	_ "github.com/mattn/go-sqlite3"
 )
 
 func TestQueryPivotData(t *testing.T) {
 	// 1. Read the test SQL data
-	sqlBytes, err := os.ReadFile("test/test_simple.sql")
+	sqlBytes, err := os.ReadFile("../../test/test_simple.sql")
 	if err != nil {
 		t.Fatalf("Failed to read test_simple.sql: %v", err)
 	}
@@ -36,7 +37,7 @@ func TestQueryPivotData(t *testing.T) {
 	}
 
 	// 4. Create Mock Config
-	config := &Config{
+	cfg := &config.Config{
 		Table: "logswp_postmeta",
 		PostTypeToMetaKeys: map[string][]string{
 			"logbook":       {"logbook_id"},
@@ -45,7 +46,7 @@ func TestQueryPivotData(t *testing.T) {
 	}
 
 	// 5. Test QueryPivotData
-	pivotData, err := QueryPivotData(db, config, nil)
+	pivotData, err := QueryPivotData(db, cfg, nil)
 	if err != nil {
 		t.Fatalf("QueryPivotData returned error: %v", err)
 	}
@@ -83,7 +84,7 @@ func TestQueryPivotData(t *testing.T) {
 
 func TestQueryPivotDataRealistic(t *testing.T) {
 	// 1. Read the realistic test SQL data
-	sqlBytes, err := os.ReadFile("test/test_multiple_logbook_logbook_entries.sql")
+	sqlBytes, err := os.ReadFile("../../test/test_multiple_logbook_logbook_entries.sql")
 	if err != nil {
 		t.Fatalf("Failed to read sql file: %v", err)
 	}
@@ -117,7 +118,7 @@ func TestQueryPivotDataRealistic(t *testing.T) {
 	}
 
 	// 4. Create Mock Config
-	config := &Config{
+	cfg := &config.Config{
 		Table: "logswp_postmeta",
 		PostTypeToMetaKeys: map[string][]string{
 			"logbook":       {"logbook_id"},
@@ -126,7 +127,7 @@ func TestQueryPivotDataRealistic(t *testing.T) {
 	}
 
 	// 5. Test QueryPivotData
-	pivotData, err := QueryPivotData(db, config, nil)
+	pivotData, err := QueryPivotData(db, cfg, nil)
 	if err != nil {
 		t.Fatalf("QueryPivotData returned error: %v", err)
 	}

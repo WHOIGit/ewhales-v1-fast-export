@@ -1,4 +1,4 @@
-package main
+package db
 
 import (
 	"database/sql"
@@ -6,27 +6,23 @@ import (
 	"log"
 	"strconv"
 	"strings"
-)
 
-// PivotData acts as the central in-memory structure holding all parsed entities.
-// It is the resulting data structure after querying the EAV database and parsing the properties.
-type PivotData struct {
-	Logbooks       []Logbook
-	LogbookEntries []LogbookEntry
-}
+	"github.com/agl/ewhales-v1-exporter/internal/config"
+	"github.com/agl/ewhales-v1-exporter/internal/models"
+)
 
 // QueryPivotData performs the database interactions to extract and pivot the EAV data.
 // It fetches all relevant post_ids first, then batches them to avoid high memory spikes
 // and database timeouts. It returns the central PivotData structure.
-func QueryPivotData(db *sql.DB, config *Config, onProgress func(processed int, total int)) (*PivotData, error) {
+func QueryPivotData(db *sql.DB, cfg *config.Config, onProgress func(processed int, total int)) (*models.PivotData, error) {
 	log.Println("Fetching distinct post_ids...")
-	postIDs, err := getDistinctPostIDs(db, config.Table)
+	postIDs, err := getDistinctPostIDs(db, cfg.Table)
 	if err != nil {
 		return nil, fmt.Errorf("error fetching post IDs: %v", err)
 	}
 
 	log.Printf("Found %d distinct post_ids to process.", len(postIDs))
-	return processBatches(db, config, postIDs, onProgress)
+	return processBatches(db, cfg, postIDs, onProgress)
 }
 
 func getDistinctPostIDs(db *sql.DB, tableName string) ([]uint, error) {
@@ -48,12 +44,12 @@ func getDistinctPostIDs(db *sql.DB, tableName string) ([]uint, error) {
 	return postIDs, nil
 }
 
-func processBatches(db *sql.DB, config *Config, postIDs []uint, onProgress func(processed int, total int)) (*PivotData, error) {
+func processBatches(db *sql.DB, cfg *config.Config, postIDs []uint, onProgress func(processed int, total int)) (*models.PivotData, error) {
 	batchSize := 100
-	var pivotData PivotData
+	var pivotData models.PivotData
 
 	metaKeysMap := make(map[string]bool)
-	for _, keys := range config.PostTypeToMetaKeys {
+	for _, keys := range cfg.PostTypeToMetaKeys {
 		for _, key := range keys {
 			metaKeysMap[key] = true
 		}
@@ -88,7 +84,7 @@ func processBatches(db *sql.DB, config *Config, postIDs []uint, onProgress func(
 			FROM %s 
 			WHERE post_id IN (%s) AND meta_key IN (%s) 
 			ORDER BY post_id
-		`, config.Table, strings.Join(idPlaceholders, ","), metaKeysInClause)
+		`, cfg.Table, strings.Join(idPlaceholders, ","), metaKeysInClause)
 
 		rows, err := db.Query(query, args...)
 		if err != nil {
@@ -104,7 +100,7 @@ func processBatches(db *sql.DB, config *Config, postIDs []uint, onProgress func(
 			}
 			logbookIDVal := props["logbook_id"]
 			if numID, err := strconv.ParseUint(logbookIDVal, 10, 64); err == nil {
-				entry := LogbookEntry{
+				entry := models.LogbookEntry{
 					PostID:        id,
 					LogbookID:     uint(numID),
 					Bottom:        props["bottom"],
@@ -126,7 +122,7 @@ func processBatches(db *sql.DB, config *Config, postIDs []uint, onProgress func(
 				}
 				pivotData.LogbookEntries = append(pivotData.LogbookEntries, entry)
 			} else {
-				lb := Logbook{
+				lb := models.Logbook{
 					PostID:    id,
 					LogbookID: logbookIDVal,
 				}

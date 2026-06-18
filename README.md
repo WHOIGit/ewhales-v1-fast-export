@@ -6,51 +6,82 @@ This repository contains tools for exporting data from the eWHALES v1 database. 
 
 The `my.cnf` and `convert_inserts.py` files are intended for use with database backups. They facilitate the conversion and processing of data dumps when a live database connection is not available or desired.
 
-## Live Database Export (Golang Tool)
+## Live Database Export (Golang Tools)
 
-The Go-based tool in this repository is intended to work directly with a live database. It extracts the required records and produces a CSV output in the exact format expected for the v1 eWHALES data processing pipeline. 
+The Go-based tools in this repository are intended to work directly with a live database. They extract the required records and produce a CSV output in the exact format expected for the v1 eWHALES data processing pipeline.
 
-It is intended to be lightweight and fast, but without putting strain on the database, using a "streaming" approach that reads and writes records in batches.
+The architecture consists of three separate tools:
+1. **Local Tool (`ewhales-local`)**: The legacy standalone tool that queries the database directly and writes CSV files to the local disk.
+2. **Server Tool (`ewhales-server`)**: A gRPC HTTP/2 server that receives streaming records from the client and writes them to CSV files.
+3. **Client Tool (`ewhales-client`)**: A lightweight client that queries the database and streams the extracted data securely to the server.
 
-### Building the Tool
+### Building the Tools
 
-Ensure you have Go installed on your system. To compile the binary, run:
+Ensure you have Go installed on your system. To compile the binaries, run:
 ```bash
-go build -o exporter
+go build -o ewhales-local ./cmd/local
+go build -o ewhales-server ./cmd/server
+go build -o ewhales-client ./cmd/client
 ```
 
-### Running the Tool
+### Running the Tools
 
-You can run the compiled binary directly. Use the `--help` flag to see available options:
+You can run the compiled binaries directly. Use the `--help` flag on any of them to see available options.
+
+#### 1. Local Tool
+The standalone exporter uses `config.json`.
 ```bash
-./exporter --help
+./ewhales-local -progress -config config.json
 ```
 
-Available flags:
-- `-config`: Path to the configuration file (default is `config.json`).
-- `-progress`: Enable terminal progress bars for the querying and serialization phases.
-- `-memstats`: Enable recording of memory statistics to a file.
-- `-memstats-interval`: Interval in seconds to record memory statistics (default 1).
-- `-memstats-file`: File to write memory statistics to (default is `memstats.csv`).
-- `-h` / `--help`: Print help info and exit.
-
-Example usage:
+#### 2. Server Tool
+The server uses `server_config.json` to define the listening port, TLS certificates, and CSV output mapping.
 ```bash
-./exporter -progress -config custom_config.json
+./ewhales-server -config server_config.json
+```
+
+#### 3. Client Tool
+The client uses `client_config.json` to define database credentials and the server's network address.
+```bash
+./ewhales-client -progress -config client_config.json
 ```
 
 ### Memory Statistics
 
-You can monitor the exporter's memory footprint while it runs. When the `-memstats` flag is enabled, a background routine will periodically log the memory statistics to a CSV file. It records the internal Go Heap Allocations as well as the Resident Set Size (RSS) of the entire process tree using `gopsutil`.
+You can monitor the tools' memory footprints while they run. When the `-memstats` flag is enabled (available on `local` and `client`), a background routine will periodically log the memory statistics to a CSV file. It records the internal Go Heap Allocations as well as the Resident Set Size (RSS) of the entire process tree using `gopsutil`.
 
 Example memory profiling usage:
 ```bash
-./exporter -memstats -memstats-interval=5 -memstats-file="metrics.csv"
+./ewhales-local -memstats -memstats-interval=5 -memstats-file="metrics.csv"
 ```
 
 ### Configuration
 
-The Golang exporter uses `config.json` to define database connection credentials, specify the output CSV filename, and configure field mappings. Ensure your configuration is correctly set up before running the tool against the live database.
+The tools use JSON files for configuration:
+- `config.json`: Used by `ewhales-local` (contains database connection details and CSV field mappings).
+- `client_config.json`: Used by `ewhales-client` (contains database connection details and `server_address`).
+- `server_config.json`: Used by `ewhales-server` (contains `listen_port`, `tls_cert_file`, `tls_key_file`, and CSV field mappings).
+
+Ensure your configurations are correctly set up before running the tools.
+
+### TLS Certificates
+
+The client and server communicate securely using gRPC over HTTP/2 with TLS encryption.
+
+**Server Side (Development):**
+When the server starts, it checks for the TLS files specified in `server_config.json` (e.g., `server.crt` and `server.key`). If it doesn't find them, it will automatically generate a self-signed development certificate and key for you.
+
+**Client Side:**
+By default in this repository, the client uses `InsecureSkipVerify: true` in its TLS configuration to seamlessly connect to the development server without needing to install the self-signed certificate into the system's root CA trust store.
+
+If you are moving to production, you should use Let's Encrypt or your organization's CA. If you want to use strict verification with the generated development certificate, you can download the server's public certificate and configure the Go gRPC client to use it.
+
+**Snippet: Fetching the Development Certificate**
+You can easily extract the auto-generated public certificate from a running server using `openssl`:
+```bash
+openssl s_client -showcerts -connect localhost:8443 </dev/null 2>/dev/null | openssl x509 -outform PEM > server.crt
+```
+*(You can then mount or distribute `server.crt` to your client machines if you implement strict TLS checking in `grpc_client.go`)*
 
 ### Generating Test Data
 
@@ -86,26 +117,21 @@ python3 anonymize.py test_data.sql test_data_anon.sql
 
 ## Docker Usage
 
-If you prefer not to install Go or Python on your local machine, you can run all the tools seamlessly via Docker.
+If you prefer not to install Go or Python on your local machine, you can run all the tools seamlessly via Docker and Docker Compose.
 
-### 1. Build the Docker Image
+### 1. Using Docker Compose
+The `docker-compose.yml` file sets up a local MySQL instance, builds the Server container, and builds the Client container.
 ```bash
-docker build -t ewhales-tools .
+docker-compose up -d --build
 ```
+This spins up the server in the background. The client will run and exit once it completes the database export.
 
-### 2. Running the Tools
-Mount your current directory (containing your `config.json` or `.sql` files) into the `/app` working directory of the container.
-
-**Run the Golang Exporter:**
+### 2. Running Python Tools via Docker Image
+You can still run the Python conversion tools dynamically using the base builder image:
 ```bash
-docker run --rm -v $(pwd):/app -it ewhales-tools exporter -progress -config config.json
-```
+docker build --target builder -t ewhales-builder .
 
-**Run the Python Converters:**
-```bash
-docker run --rm -v $(pwd):/app -it ewhales-tools python3 /usr/local/bin/convert_inserts.py input.sql output.sql 5000
-```
-
-```bash
-docker run --rm -v $(pwd):/app -it ewhales-tools python3 /usr/local/bin/anonymize.py test_data.sql test_data_anon.sql
+# Run the Python Converters:
+docker run --rm -v $(pwd):/app -it ewhales-builder python3 /usr/local/bin/convert_inserts.py input.sql output.sql 5000
+docker run --rm -v $(pwd):/app -it ewhales-builder python3 /usr/local/bin/anonymize.py test_data.sql test_data_anon.sql
 ```

@@ -1,4 +1,4 @@
-package main
+package config
 
 import (
 	"encoding/json"
@@ -15,6 +15,14 @@ type Config struct {
 	CSVBaseName        string              `json:"csv_base_name"`
 	IdsToFields        map[string]string   `json:"ids_to_fieds"`
 	PostTypeToMetaKeys map[string][]string `json:"post_type_to_meta_keys"`
+	
+	// Client configuration
+	ServerAddress string `json:"server_address"`
+	
+	// Server configuration
+	ListenPort  int    `json:"listen_port"`
+	TLSCertFile string `json:"tls_cert_file"`
+	TLSKeyFile  string `json:"tls_key_file"`
 }
 
 func LoadConfig(filename string) (*Config, error) {
