@@ -1,5 +1,5 @@
 {
-  "csv_base_name": "test.csv",
+  "csv_base_name": "local_export_%Y%m%d.csv",
   "database": "test",
   "host": "localhost",
   "ids_to_fieds": {

@@ -7,6 +7,7 @@ require (
 	github.com/mattn/go-sqlite3 v1.14.45
 	github.com/schollz/progressbar/v3 v3.19.0
 	github.com/shirou/gopsutil/v3 v3.24.5
+	github.com/tebeka/strftime v0.1.5
 	google.golang.org/grpc v1.81.1
 	google.golang.org/protobuf v1.36.11
 )

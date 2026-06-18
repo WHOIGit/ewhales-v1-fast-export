@@ -12,6 +12,8 @@ import (
 	"github.com/agl/ewhales-v1-exporter/internal/serialize"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/schollz/progressbar/v3"
+	"github.com/tebeka/strftime"
+	"time"
 )
 
 func main() {
@@ -53,13 +55,19 @@ func main() {
 		cfg.Port = 3306
 	}
 
+	baseName, err := strftime.Format(cfg.CSVBaseName, time.Now())
+	if err != nil {
+		log.Printf("Error formatting filename with strftime: %v. Using original config string.", err)
+		baseName = cfg.CSVBaseName
+	}
+
 	fmt.Printf("  - Database Host : %s\n", cfg.Host)
 	fmt.Printf("  - Database Port : %d\n", cfg.Port)
 	fmt.Printf("  - Database Name : %s\n", cfg.Database)
 	fmt.Printf("  - Database User : %s\n", cfg.Username)
 	fmt.Printf("  - Target Table  : %s\n", cfg.Table)
-	fmt.Printf("  - Logbooks CSV  : logbooks_%s\n", cfg.CSVBaseName)
-	fmt.Printf("  - Entries CSV   : %s\n", cfg.CSVBaseName)
+	fmt.Printf("  - Logbooks CSV  : logbooks_%s\n", baseName)
+	fmt.Printf("  - Entries CSV   : %s\n", baseName)
 
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s",
 		cfg.Username, cfg.Password, cfg.Host, cfg.Port, cfg.Database)
@@ -97,8 +105,8 @@ func main() {
 	// 4. Serialization Phase
 	fmt.Println("\nStep 4: Serialization Phase")
 	serializer := &serialize.CSVSerializer{
-		LogbooksFile:       "logbooks_" + cfg.CSVBaseName,
-		LogbookEntriesFile: cfg.CSVBaseName,
+		LogbooksFile:       "logbooks_" + baseName,
+		LogbookEntriesFile: baseName,
 		IdsToFields:        cfg.IdsToFields,
 	}
 
