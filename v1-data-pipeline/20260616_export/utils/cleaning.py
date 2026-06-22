@@ -156,7 +156,7 @@ PAGE_MAP = {
     '1-8': 1, '3 1/2': 3, '5 1/2': 5, '14-15': 14, '22-23': 22,
     '30-31': 30, '48-49': 48, '94/95': 94, '97-98': 97, '108-109': 108,
     '121 (says 107)': 121, '122-123': 122, '158-159': 158,
-    '159-160': 160, '177-178': 177, '186-187': 186,
+    '159-160': 159, '177-178': 177, '186-187': 186,
     '(8)': 8, '(6)': 6, '(4)': 4, '(2)': 2, '(16': 16,
     '(17': 17, '(18': 18, '(19': 19, '(20': 20, '49-52':49, '5 1/2a':5,
     '91A':91, '91B':91, '94-95':94, '96-97':96,
@@ -164,6 +164,7 @@ PAGE_MAP = {
 }
 
 PAGE_NAN = {'N', 'N/a', 'n/a', 'n/a`', '(', '1870-05-08'}
+PAGE_RE = re.compile(r'(\D)*(?P<page>\d+).*')
 
 def clean_page_column(df, column="Page"):
     """
@@ -171,11 +172,30 @@ def clean_page_column(df, column="Page"):
     """
     df[f"{column}_og"] = df[column].copy()
 
+    def extract_page(text):
+        try: # Naively parse as int
+            return int(text)
+        except ValueError:
+            pass
+        try: # Check if a date accidentally got in here
+            datetime.datetime.strptime(str(text), "%Y-%m-%d")
+            return np.nan
+        except ValueError:
+            pass
+
+        # Assume the number is formatted a little weirdly like 180-181, "10", etc.
+        match = PAGE_RE.match(str(text))
+        if match:
+            return match.group("page")
+        
+        # All else fails... it's not a number (nan)
+        return np.nan
+
     # apply conversions
-    df[column] = df[column].replace(PAGE_MAP)
+    df[column] = df[column].apply(extract_page)
 
     # set NaN for flagged originals
-    df.loc[df[f"{column}_og"].isin(PAGE_NAN), column] = np.nan
+    # df.loc[df[f"{column}_og"].isin(PAGE_NAN), column] = np.nan
 
     # light trim + numeric
     df[column] = df[column].astype(str).str.strip('"ab` ').replace({"nan": np.nan})

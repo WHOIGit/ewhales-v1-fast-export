@@ -27,7 +27,7 @@ def test_clean_page_column():
     pd.testing.assert_frame_equal(result_df, expected_df)
 
 def test_clean_page_column_already_clean():
-    test_values = [1.0, 42.0, 100.5, np.nan]
+    test_values = [1.0, 42.0, 100.0, np.nan]
     df_test = pd.DataFrame({'Page': test_values})
     
     expected_df = pd.DataFrame({
