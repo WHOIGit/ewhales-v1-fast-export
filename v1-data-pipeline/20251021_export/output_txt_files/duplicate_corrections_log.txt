@@ -1,0 +1,207 @@
+=== Log Start ===
+
+==== 2025-11-03 11:18:58.352308 ====
+Compared IDs: 136934 vs 136933
+Action: Dropped 136934
+Key field differences:
+ - ID: 136934  ≠  136933
+ - Wind Direction: nan  ≠  ESE
+ - Wind Speed/Force: nan  ≠  Moderate Winds
+ - Miscellaneous Observations: No Weather Observations Recorded  ≠  nan
+
+==== 2025-11-03 11:19:12.609485 ====
+Compared IDs: 132553 vs 129689
+Action: Edited 132553
+ - Updated Entry Date to: 1841-01-14
+Key field differences:
+ - ID: 132553  ≠  129689
+ - Latitude: 35 12 S  ≠  45 24 S
+ - Longitude: 174 09 E  ≠  136 47 E
+ - Weather: pleasant  ≠  nan
+ - Wind Direction: nan  ≠  NNW
+ - Wind Speed/Force: nan  ≠  strong winds
+ - Miscellaneous Observations: nan  ≠  saw plenty of right whales
+ - Sea State: nan  ≠  very rugged
+ - Landmark: anchored in the Bay of Islands  ≠  nan
+ - Ship Heading/Course: nan  ≠  E
+
+==== 2025-11-03 11:19:24.383233 ====
+Compared IDs: 132554 vs 129690
+Action: Edited 132554
+ - Updated Entry Date to: 1841-01-15
+Key field differences:
+ - ID: 132554  ≠  129690
+ - Latitude: 35 12 S  ≠  45 05 S
+ - Longitude: 174 09 E  ≠  136 55 E
+ - Weather: pleasant  ≠  nan
+ - Wind Direction: nan  ≠  WNW
+ - Wind Speed/Force: nan  ≠  light breezes
+ - Miscellaneous Observations: nan  ≠  saw whales
+ - Sea State: nan  ≠  heavy swell from NW
+ - Landmark: anchored in the Bay of Islands  ≠  nan
+ - Ship Heading/Course: nan  ≠  N
+
+==== 2025-11-03 11:19:52.736886 ====
+Compared IDs: 132555 vs 129691
+Action: Edited 132555
+ - Updated Entry Date to: 1841-01-16
+Key field differences:
+ - ID: 132555  ≠  129691
+ - Latitude: 35 12 S  ≠  45 05 S
+ - Longitude: 174 09 E  ≠  136 55 E
+ - Weather: pleasant  ≠  nan
+ - Wind Direction: nan  ≠  NW
+ - Wind Speed/Force: nan  ≠  light breezes
+ - Miscellaneous Observations: nan  ≠  saw whales
+ - Landmark: anchored in the Bay of Islands  ≠  nan
+
+==== 2025-11-03 11:20:11.503112 ====
+Compared IDs: 132556 vs 129692
+Action: Edited 132556
+ - Updated Entry Date to: 1841-01-17
+Key field differences:
+ - ID: 132556  ≠  129692
+ - Latitude: 35 12 S  ≠  45 05 S
+ - Longitude: 174 09 E  ≠  136 45 E
+ - Weather: pleasant  ≠  thick
+ - Wind Direction: nan  ≠  NW
+ - Wind Speed/Force: nan  ≠  strong breezes
+ - Miscellaneous Observations: nan  ≠  saw a whale
+ - Cloud Cover: nan  ≠  thick
+ - Landmark: anchored in the Bay of Islands  ≠  nan
+ - Ship Heading/Course: nan  ≠  WSW
+
+==== 2025-11-03 11:20:24.425960 ====
+Compared IDs: 132557 vs 129693
+Action: Edited 132557
+ - Updated Entry Date to: 1841-01-18
+Key field differences:
+ - ID: 132557  ≠  129693
+ - Latitude: 35 12 S  ≠  45 07 S
+ - Longitude: 174 09 E  ≠  137 40 E
+ - Weather: pleasant  ≠  nan
+ - Wind Direction: nan  ≠  NW
+ - Wind Speed/Force: nan  ≠  moderate breezes
+ - Miscellaneous Observations: "discharged John Manchester our second officer for disobeying orders"  ≠  saw a whale
+ - Landmark: anchored in the Bay of Islands  ≠  nan
+ - Ship Heading/Course: nan  ≠  E
+
+==== 2025-11-03 11:20:38.604764 ====
+Compared IDs: 132558 vs 129694
+Action: Edited 132558
+ - Updated Entry Date to: 1841-01-19
+Key field differences:
+ - ID: 132558  ≠  129694
+ - Latitude: 35 12 S  ≠  45 15 S
+ - Longitude: 174 09 E  ≠  139 00 E
+ - Weather: pleasant  ≠  nan
+ - Wind Direction: nan  ≠  S
+ - Wind Speed/Force: nan  ≠  strong breezes
+ - Cloud Cover: nan  ≠  cloudy
+ - Landmark: anchored in the Bay of Islands  ≠  nan
+ - Ship Heading/Course: nan  ≠  ESE
+
+==== 2025-11-03 11:20:53.586612 ====
+Compared IDs: 132559 vs 129972
+Action: Edited 132559
+ - Updated Entry Date to: 1841-01-20
+Key field differences:
+ - ID: 132559  ≠  129972
+ - Latitude: 35 12 S  ≠  45 48 S
+ - Longitude: 174 09 E  ≠  142 16 E
+ - Weather: pleasant  ≠  nan
+ - Wind Direction: nan  ≠  NW
+ - Wind Speed/Force: nan  ≠  strong breezes
+ - Ship Sightings: "the barque Hesper of fairhaven sailed at 3am from this harbor for home with 1900 bbls. of sperm"  ≠  nan
+ - Miscellaneous Observations: nan  ≠  saw whales
+ - Landmark: anchored in the Bay of Islands  ≠  nan
+
+==== 2025-11-03 11:21:07.496670 ====
+Compared IDs: 132560 vs 129973
+Action: Edited 132560
+ - Updated Entry Date to: 1841-01-21
+Key field differences:
+ - ID: 132560  ≠  129973
+ - Latitude: 35 12 S  ≠  45 11 S
+ - Longitude: 174 09 E  ≠  146 34 E
+ - Weather: pleasant  ≠  nan
+ - Wind Direction: nan  ≠  NW
+ - Wind Speed/Force: light breeze & calms  ≠  strong gales
+ - Landmark: anchored in the Bay of Islands  ≠  nan
+ - Ship Heading/Course: nan  ≠  ENE
+
+==== 2025-11-03 11:21:20.198613 ====
+Compared IDs: 132561 vs 129974
+Action: Edited 132561
+ - Updated Entry Date to: 1841-01-22
+Key field differences:
+ - ID: 132561  ≠  129974
+ - Latitude: 35 12 S  ≠  44 17 S
+ - Longitude: 174 09 E  ≠  150 51 E
+ - Weather: pleasant  ≠  nan
+ - Wind Direction: nan  ≠  WNW
+ - Wind Speed/Force: nan  ≠  "strongest gale we have had the voyage"
+ - Ship Sightings: "at 8am the ship Chelsea of New London Capt Smith got underway and went out with 1900"  ≠  nan
+ - Landmark: anchored in the Bay of Islands  ≠  nan
+ - Ship Heading/Course: nan  ≠  ENE
+
+==== 2025-11-03 11:22:08.082902 ====
+Compared IDs: 132562 vs 129975
+Action: Edited 132562
+ - Updated Entry Date to: 1841-01-23
+Key field differences:
+ - ID: 132562  ≠  129975
+ - Latitude: 35 12 S  ≠  43 14 S
+ - Longitude: 174 09 E  ≠  153 22 E
+ - Wind Direction: N & E  ≠  SW
+ - Wind Speed/Force: strong breeze  ≠  strong gales
+ - Cloud Cover: overcast  ≠  nan
+ - Landmark: anchored in the Bay of Islands  ≠  nan
+ - Ship Heading/Course: nan  ≠  NE
+
+==== 2025-11-03 11:22:27.370809 ====
+Compared IDs: 132563 vs 129976
+Action: Edited 132563
+ - Updated Entry Date to: 1841-01-24
+Key field differences:
+ - ID: 132563  ≠  129976
+ - Latitude: 35 12 S  ≠  43 00 S
+ - Longitude: 174 09 E  ≠  154 55 E
+ - Weather: pleasant  ≠  nan
+ - Wind Direction: nan  ≠  SW
+ - Wind Speed/Force: nan  ≠  moderate breezes
+ - Sea State: nan  ≠  heavy swell
+ - Landmark: anchored in the Bay of Islands most of day then at 7am out to sea-"at 12 Cape Brett bearing SSE distance 10 miles"  ≠  nan
+ - Ship Heading/Course: nan  ≠  NE
+
+==== 2025-11-03 11:23:25.121644 ====
+Compared IDs: 132564 vs 129977
+Action: Edited 132564
+ - Updated Entry Date to: 1841-01-25
+Key field differences:
+ - ID: 132564  ≠  129977
+ - Latitude: 33 48 S  ≠  43 52 S
+ - Longitude: 177 04 E  ≠  156 43 E
+ - Weather: rainy  ≠  nan
+ - Wind Direction: W  ≠  NE
+ - Wind Speed/Force: strong breeze  ≠  light breezes
+ - Cloud Cover: overcast  ≠  nan
+ - Ship Heading/Course: NE  ≠  ESE
+
+==== 2025-11-03 11:23:56.998209 ====
+Compared IDs: 128140 vs 128139
+Action: Dropped 128140
+Key field differences:
+ - ID: 128140  ≠  128139
+ - Wind Speed/Force: Strong Breeze  ≠  Good Breeze
+ - Page: nan  ≠  163
+
+==== 2025-11-03 11:24:11.098467 ====
+Compared IDs: 128699 vs 128698
+Action: Edited 128699
+ - Updated Entry Date to: 1869-07-19
+Key field differences:
+ - ID: 128699  ≠  128698
+ - Weather: nan  ≠  Good
+ - Wind Direction: S West  ≠  S East
+ - Wind Speed/Force: Stiff Breeze  ≠  Fine Breeze
