@@ -26,13 +26,18 @@ def prompt_user(question, default="y"):
             sys.stdout.write("Please respond with 'yes' or 'no' (or 'y' or 'n').\n")
 
 def check_and_install_conda():
+    mamba_path = shutil.which("mamba")
+    if mamba_path:
+        print(f"Mamba found at: {mamba_path}")
+        return mamba_path
+
     conda_path = shutil.which("conda")
     if conda_path:
         print(f"Conda found at: {conda_path}")
         return conda_path
 
-    print("Conda binary not found in PATH.")
-    if prompt_user("Would you like to auto-install conda via Miniforge to your home directory?"):
+    print("Mamba/Conda binary not found in PATH.")
+    if prompt_user("Would you like to auto-install conda/mamba via Miniforge to your home directory?"):
         print("Installing Miniforge...")
         miniforge_url = "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh"
         installer_path = os.path.join(os.path.expanduser("~"), "miniforge_installer.sh")
@@ -50,11 +55,11 @@ def check_and_install_conda():
             
             print("Miniforge installed successfully.")
             os.remove(installer_path)
-            print("Please restart your shell or run 'source ~/.bashrc' after this script finishes to use conda.")
+            print("Please restart your shell or run 'source ~/.bashrc' after this script finishes to use conda/mamba.")
             
-            return os.path.join(install_dir, "bin", "conda")
+            return os.path.join(install_dir, "bin", "mamba")
         except Exception as e:
-            print(f"Failed to install conda: {e}")
+            print(f"Failed to install conda/mamba: {e}")
             if os.path.exists(installer_path):
                 os.remove(installer_path)
             return None
@@ -82,6 +87,46 @@ def setup_conda_env(conda_executable):
                     print(f"Failed to update conda environment: {e}")
     else:
         print("Skipping conda environment setup.")
+
+def setup_pre_commit_hook(conda_executable):
+    if prompt_user("Would you like to set up a git pre-commit hook for nbstripout?"):
+        try:
+            result = subprocess.run(["git", "rev-parse", "--show-toplevel"], capture_output=True, text=True, check=True)
+            git_root = result.stdout.strip()
+            hook_path = os.path.join(git_root, ".git", "hooks", "pre-commit")
+            
+            hook_script = f"""#!/bin/bash
+
+# Find all staged .ipynb files (Added, Copied, Modified)
+STAGED_NOTEBOOKS=$(git diff --cached --name-only --diff-filter=ACM | grep '\\.ipynb$' || true)
+
+if [ -n "$STAGED_NOTEBOOKS" ]; then
+    echo "Stripping output from Jupyter notebooks..."
+    
+    # Run nbstripout on the staged notebooks under the conda environment
+    {conda_executable} run -n ewhales nbstripout $STAGED_NOTEBOOKS
+    
+    # If nbstripout failed, abort the commit
+    if [ $? -ne 0 ]; then
+        echo "Error: nbstripout failed."
+        exit 1
+    fi
+    
+    # Stage the stripped notebooks so the clean versions are committed
+    git add $STAGED_NOTEBOOKS
+fi
+"""
+            with open(hook_path, "w") as f:
+                f.write(hook_script)
+                
+            os.chmod(hook_path, 0o755)
+            print(f"Pre-commit hook successfully installed at {hook_path}")
+        except subprocess.CalledProcessError:
+            print("Failed to locate git repository. Cannot install pre-commit hook.")
+        except Exception as e:
+            print(f"Failed to set up pre-commit hook: {e}")
+    else:
+        print("Skipping pre-commit hook setup.")
 
 def main():
     parser = argparse.ArgumentParser(description="Bootstrap a new data pipeline export directory.")
@@ -166,6 +211,7 @@ def main():
     conda_executable = check_and_install_conda()
     if conda_executable:
         setup_conda_env(conda_executable)
+        setup_pre_commit_hook(conda_executable)
 
     print("Bootstrap complete!")
 
