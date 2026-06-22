@@ -152,29 +152,30 @@ def correct_dups(df, dup_ids, log_path="duplicate_corrections_log.txt"):
 
 # 2) TEXT  FORMATTING / WIND MAPPING -----------------------------------------------------------
 
+PAGE_MAP = {
+    '1-8': 1, '3 1/2': 3, '5 1/2': 5, '14-15': 14, '22-23': 22,
+    '30-31': 30, '48-49': 48, '94/95': 94, '97-98': 97, '108-109': 108,
+    '121 (says 107)': 121, '122-123': 122, '158-159': 158,
+    '159-160': 160, '177-178': 177, '186-187': 186,
+    '(8)': 8, '(6)': 6, '(4)': 4, '(2)': 2, '(16': 16,
+    '(17': 17, '(18': 18, '(19': 19, '(20': 20, '49-52':49, '5 1/2a':5,
+    '91A':91, '91B':91, '94-95':94, '96-97':96,
+    '20-21': 20, '24-25': 24, '29-30': 29, '35-36': 35,
+}
+
+PAGE_NAN = {'N', 'N/a', 'n/a', 'n/a`', '(', '1870-05-08'}
+
 def clean_page_column(df, column="Page"):
     """
     Exact-match page cleaner mirroring clean_depth_column, with inline dicts.
     """
     df[f"{column}_og"] = df[column].copy()
 
-    page_map = {
-        '1-8': 1, '3 1/2': 3, '5 1/2': 5, '14-15': 14, '22-23': 22,
-        '30-31': 30, '48-49': 48, '94/95': 94, '97-98': 97, '108-109': 108,
-        '121 (says 107)': 121, '122-123': 122, '158-159': 158,
-        '159-160': 160, '177-178': 177, '186-187': 186,
-        '(8)': 8, '(6)': 6, '(4)': 4, '(2)': 2, '(16': 16,
-        '(17': 17, '(18': 18, '(19': 19, '(20': 20, '49-52':49, '5 1/2a':5,
-        '91A':91, '91B':91, '94-95':94, '96-97':96,
-        '20-21': 20, '24-25': 24, '29-30': 29, '35-36': 35,
-        }
-    page_nan = {'N', 'N/a', 'n/a', 'n/a`', '(', '1870-05-08'}
-
     # apply conversions
-    df[column] = df[column].replace(page_map)
+    df[column] = df[column].replace(PAGE_MAP)
 
     # set NaN for flagged originals
-    df.loc[df[f"{column}_og"].isin(page_nan), column] = np.nan
+    df.loc[df[f"{column}_og"].isin(PAGE_NAN), column] = np.nan
 
     # light trim + numeric
     df[column] = df[column].astype(str).str.strip('"ab` ').replace({"nan": np.nan})
@@ -182,9 +183,9 @@ def clean_page_column(df, column="Page"):
 
     # report unhandled
     unhandled = df[df[column].isna() & df[f"{column}_og"].notna()][f"{column}_og"]
-    unknown = sorted(set(unhandled) - set(page_map.keys()) - set(page_nan))
+    unknown = sorted(set(unhandled) - set(PAGE_MAP.keys()) - set(PAGE_NAN))
     if unknown:
-        print(f"\n{len(unknown)} unhandled values (add to page_map or page_nan):")
+        print(f"\n{len(unknown)} unhandled values (add to PAGE_MAP or PAGE_NAN):")
         for val in unknown:
             print(f"  - '{val}'")
     else:
@@ -193,81 +194,79 @@ def clean_page_column(df, column="Page"):
     return df
 
 
+DEPTH_MAP = {
+    'anchored in 5 fathoms of water': 5,
+    '2 1/2': 2.5, '3 1/2': 3.5, '4 1/2': 4.5, '5 1/4': 5.25,
+    '5 1/2': 5.5, '6 1/2': 6.5, '7 1/2': 7.5, '8 1/2': 8.5, '8.5': 8.5,
+    '9 1/2': 9.5, '11 1/2': 11.5, '12 1/2': 12.5,
+    '8 (at Tarpaulin Cove)': 8.0,
+    '30 and 25': 27.5,
+    '35(11pm), 38(2am), 33(11am)': 35.0,
+    '70 at 5': 70.0,
+    'at 11 pm sounded in 45': 45.0,
+    '23 @ 8:30pm, then 10 @ noon': 16.5,
+    '45 in am, 30 at noon (end of day)': 38.0,
+    'at 8am 26': 26.0,
+    '@ 8pm 7': 7.0, '@ 4pm 45': 45.0, '@ 4pm 90': 90.0,
+    "'@ 4pm 90": 90.0, "'@ 4pm 45": 45.0, "'@ 8pm 7": 7.0,
+    '48 at 3:30pm, 45 at 5pm': 47.0,
+    '7-9': 8.0,
+    '5 @ 2': 5.0, '5 @ 2am': 5.0,
+    '20 (at 4pm)': 20.0,
+    '@5pm-22': 22.0, "'@5pm-22": 22.0,
+    'at 3pm 4': 4.0, 'at 9pm 23': 23.0, 'at 11am 50': 50.0,
+    '3pm-20': 20.0, '4.5 @ 1pm': 4.5,
+    '10 @ 7pm': 10.0,
+    '28(8pm), 30(rest of night)': 29.0,
+    '5 Fathoms' : 5.0,
+    '6 to 3 (due to storm) then back to 6' : 6.0,
+    '45 at 4pm' : 45.0,
+    '60 fathoms' : 60,
+    '27 & 30': 28.5,
+    '55?': 55,
+    '6-8': 7,
+    '@ 3am 58, @ 7am 52': 55,
+    'at 4pm 80, at 6pm 52': 66,
+}
+
+DEPTH_NAN = {
+    'nan', '10-15', '20 then 11', '50 at start, 43 at 4 PM', '37, 27',
+    '35, 30', '50, 45, 40 (7pm, 11pm, 4am)', '35, 22 (1pm, 4pm)',
+    '54 (8pm), 70 (2am), 90 (4am)', '50 (7pm), 65 (noon)', "'@ 3am 58, @ 7am 52",
+    '`', '7pm 41, 9pm 31', '70 at 5am', '19 at 1:30pm, 17 at 7pm, 9 at 5am',
+    '35 @ 7pm, 26 @ 8am, 20 @ 12pm', '41 to 75', '11, 4', 'ENE',
+    '9am-17, 11am-20', '50 @ 10pm, 30 later',
+    '50 @ 2pm, 35 @ 11pm, 28 @ 3am, 42 @ 9am',
+    '20 @ 11pm, 10 @ 8am',
+    '48, 27, 30 @ 10am', '22 38 W'
+}
+
 def clean_depth_column(df, column='Depth'):
     """
     Clean and standardize the Depth column in the dataframe using exact matches only.
     Returns a DataFrame with:
       - 'Depth_og': original string value
       - 'Depth': cleaned float or NaN
-      - Console output of any unhandled strings (not in depth_map or depth_nan)
+      - Console output of any unhandled strings (not in DEPTH_MAP or DEPTH_NAN)
     """
 
     # save original values
     df['Depth_og'] = df[column].copy()
 
-    # running list of conversions
-    depth_map = {
-        'anchored in 5 fathoms of water': 5,
-        '2 1/2': 2.5, '3 1/2': 3.5, '4 1/2': 4.5, '5 1/4': 5.25,
-        '5 1/2': 5.5, '6 1/2': 6.5, '7 1/2': 7.5, '8 1/2': 8.5, '8.5': 8.5,
-        '9 1/2': 9.5, '11 1/2': 11.5, '12 1/2': 12.5,
-        '8 (at Tarpaulin Cove)': 8.0,
-        '30 and 25': 27.5,
-        '35(11pm), 38(2am), 33(11am)': 35.0,
-        '70 at 5': 70.0,
-        'at 11 pm sounded in 45': 45.0,
-        '23 @ 8:30pm, then 10 @ noon': 16.5,
-        '45 in am, 30 at noon (end of day)': 38.0,
-        'at 8am 26': 26.0,
-        '@ 8pm 7': 7.0, '@ 4pm 45': 45.0, '@ 4pm 90': 90.0,
-        "'@ 4pm 90": 90.0, "'@ 4pm 45": 45.0, "'@ 8pm 7": 7.0,
-        '48 at 3:30pm, 45 at 5pm': 47.0,
-        '7-9': 8.0,
-        '5 @ 2': 5.0, '5 @ 2am': 5.0,
-        '20 (at 4pm)': 20.0,
-        '@5pm-22': 22.0, "'@5pm-22": 22.0,
-        'at 3pm 4': 4.0, 'at 9pm 23': 23.0, 'at 11am 50': 50.0,
-        '3pm-20': 20.0, '4.5 @ 1pm': 4.5,
-        '10 @ 7pm': 10.0,
-        '28(8pm), 30(rest of night)': 29.0,
-        '5 Fathoms' : 5.0,
-        '6 to 3 (due to storm) then back to 6' : 6.0,
-        '45 at 4pm' : 45.0,
-        '60 fathoms' : 60,
-        '27 & 30': 28.5,
-        '55?': 55,
-        '6-8': 7,
-        '@ 3am 58, @ 7am 52': 55,
-        'at 4pm 80, at 6pm 52': 66,
-    }
-
-    # running list of range/unclear values to set to NaN
-    depth_nan = {
-        'nan', '10-15', '20 then 11', '50 at start, 43 at 4 PM', '37, 27',
-        '35, 30', '50, 45, 40 (7pm, 11pm, 4am)', '35, 22 (1pm, 4pm)',
-        '54 (8pm), 70 (2am), 90 (4am)', '50 (7pm), 65 (noon)', "'@ 3am 58, @ 7am 52",
-        '`', '7pm 41, 9pm 31', '70 at 5am', '19 at 1:30pm, 17 at 7pm, 9 at 5am',
-        '35 @ 7pm, 26 @ 8am, 20 @ 12pm', '41 to 75', '11, 4', 'ENE',
-        '9am-17, 11am-20', '50 @ 10pm, 30 later',
-        '50 @ 2pm, 35 @ 11pm, 28 @ 3am, 42 @ 9am',
-        '20 @ 11pm, 10 @ 8am',
-        '48, 27, 30 @ 10am', '22 38 W'
-    }
-
     # apply conversions
-    df[column] = df[column].replace(depth_map)
+    df[column] = df[column].replace(DEPTH_MAP)
 
-    # set depth_nan entries to NaN
-    df.loc[df['Depth_og'].isin(depth_nan), column] = np.nan
+    # set DEPTH_NAN entries to NaN
+    df.loc[df['Depth_og'].isin(DEPTH_NAN), column] = np.nan
 
     # convert strings to floats
     df[column] = pd.to_numeric(df[column], errors='coerce')
 
     # print strings not found in dicts that errored
     unhandled = df[df[column].isna() & df['Depth_og'].notna()]
-    unknown = sorted(set(unhandled['Depth_og']) - depth_nan - depth_map.keys())
+    unknown = sorted(set(unhandled['Depth_og']) - DEPTH_NAN - DEPTH_MAP.keys())
     if unknown:
-        print(f"\n{len(unknown)} unhandled values (add to depth_map or depth_nan):")
+        print(f"\n{len(unknown)} unhandled values (add to DEPTH_MAP or DEPTH_NAN):")
         for val in unknown:
             print(f"  - '{val}'")
     else:
