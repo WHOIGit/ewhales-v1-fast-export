@@ -1,0 +1,124 @@
+Column	Before	After
+Latitude	Equator	EQUATOR
+Latitude	37 17  N	37 17 N
+Latitude	36 38  N	36 38 N
+Latitude	37 50  N	37 50 N
+Latitude	38 08  N	38 08 N
+Latitude	38 05  N	38 05 N
+Latitude	4710 N	47 10 N
+Latitude	46 10  S	46 10 S
+Latitude	18 40  S	18 40 S
+Latitude	40 19N	40 19 N
+Latitude	N/a	
+Latitude	Not Given	
+Latitude	no ob	NO OB
+Latitude	37 44  S	37 44 S
+Latitude	n/A	
+Latitude	38 miles S	38 MILES S
+Latitude	7 miles S	7 MILES S
+Latitude	32 miles S	32 MILES S
+Latitude	50 miles N	50 MILES N
+Latitude	58 miles S	58 MILES S
+Latitude	25 miles N	25 MILES N
+Latitude	16 miles N	16 MILES N
+Latitude	13 miles N	13 MILES N
+Latitude	4 miles N	4 MILES N
+Latitude	31 miles S	31 MILES S
+Latitude	08 miles S	08 MILES S
+Latitude	57 miles S	57 MILES S
+Latitude	42 miles S	42 MILES S
+Latitude	41 miles S	41 MILES S
+Latitude	9 miles S	9 MILES S
+Latitude	25 miles S	25 MILES S
+Latitude	15 miles S	15 MILES S
+Latitude	35 miles S	35 MILES S
+Latitude	47 miles S	47 MILES S
+Latitude	20 miles S	20 MILES S
+Latitude	23 miles S	23 MILES S
+Latitude	44 miles S	44 MILES S
+Latitude	17 miles S	17 MILES S
+Latitude	00 17 miles S	00 17 MILES S
+Latitude	38 36  N	38 36 N
+Latitude	39 40  N	39 40 N
+Latitude	39 53  N	39 53 N
+Latitude	36 26N	36 26 N
+Latitude	34 28N	34 28 N
+Latitude	07 33N	07 33 N
+Latitude	2 miles S	2 MILES S
+Latitude	10 miles S	10 MILES S
+Latitude	13 miles S	13 MILES S
+Latitude	18 miles S	18 MILES S
+Latitude	11 miles N	11 MILES N
+Latitude	2 miles N	2 MILES N
+Latitude	6 miles S	6 MILES S
+Latitude	52 miles S	52 MILES S
+Latitude	43 miles N	43 MILES N
+Latitude	3 miles S	3 MILES S
+Latitude	50 miles S	50 MILES S
+Latitude	56 miles S	56 MILES S
+Latitude	59 miles S	59 MILES S
+Latitude	46 miles S	46 MILES S
+Latitude	51 miles S	51 MILES S
+Latitude	23  48 N	23 48 N
+Latitude	13 01N	13 01 N
+Latitude	observed but too faded to read	
+Latitude	31 40  N	31 40 N
+Latitude	29 29  N	29 29 N
+Latitude	26 59  N	26 59 N
+Latitude	4 08  S	4 08 S
+Latitude	27 16  S	27 16 S
+Latitude	23 18  S	23 18 S
+Latitude	24 18  S	24 18 S
+Latitude	23 45  S	23 45 S
+Latitude	24 07  S	24 07 S
+Latitude	24 26  S	24 26 S
+Latitude	44 46  S	44 46 S
+Latitude	44 36  S	44 36 S
+Latitude	Does noot say	
+Longitude	179 12  E	179 12 E
+Longitude	178 05  W	178 05 W
+Longitude	178 31  W	178 31 W
+Longitude	179 21  W	179 21 W
+Longitude	167  07 W	167 07 W
+Longitude	167  00 W	167 00 W
+Longitude	175 19  W	175 19 W
+Longitude	32  51 W	32 51 W
+Longitude	Non given	
+Longitude	179 09W	179 09 W
+Longitude	130 10  E	130 10 E
+Longitude	130 55  E	130 55 E
+Longitude	130 20  E	130 20 E
+Longitude	131 14  E	131 14 E
+Longitude	131 56  E	131 56 E
+Longitude	132 00  E	132 00 E
+Longitude	132 10  E	132 10 E
+Longitude	131 22  E	131 22 E
+Longitude	131 27  E	131 27 E
+Longitude	133 58  E	133 58 E
+Longitude	133 15  E	133 15 E
+Longitude	133 50  E	133 50 E
+Longitude	N/a	
+Longitude	Not Given	
+Longitude	By Land	
+Longitude	98 28  W	98 28 W
+Longitude	33 23W	33 23 W
+Longitude	43  20 W	43 20 W
+Longitude	29 49  W	29 49 W
+Longitude	Unreadable	
+Longitude	unreadable	
+Longitude	uncomprehensbile	
+Longitude	55 25  E	55 25 E
+Longitude	28 36W	28 36 W
+Longitude	39 35  W	39 35 W
+Longitude	37 19  W	37 19 W
+Longitude	55 32  W	55 32 W
+Longitude	35 15  W	35 15 W
+Longitude	observed but too faded to read	
+Longitude	98 30  E	98 30 E
+Longitude	153  42 E	153 42 E
+Longitude	158 18  E	158 18 E
+Longitude	159 45  E	159 45 E
+Longitude	160 58  E	160 58 E
+Longitude	175 30  W	175 30 W
+Longitude	154 30  W	154 30 W
+Longitude	48  48 E	48 48 E

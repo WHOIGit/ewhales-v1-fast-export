@@ -1,0 +1,40 @@
+==== Beaufort additions 2025-08-07 11:09:49 ====
+nnw: nan
+a living gale: 9.0
+a moderate gale: 8.0
+light calm weather: 1.0
+strong breeses: 6.0
+light windss and calm winds: 1.0
+light calm: 0.0
+fresh air: 5.0
+light breeze and rugged winds: nan
+moderate trades & variables: 5.0
+strong  breezes: 6.0
+light and fine breezes: 2.0
+strong storm: 10.0
+pleasant and light winds: 3.0
+variable winds and calm: 1.0
+light winds and squally: 2.0
+splendid breezes: 3.0
+very good breezes: 3.0
+strong wholesail winds: 6.0
+whole topsail trades: 6.0
+much winds: nan
+pleasant and light breezes: 2.0
+very light and variable winds: 2.0
+pleasant weather: nan
+moderatee: 4.0
+speed1: nan
+not much breezes: 0.0
+speed01: nan
+sp1: nan
+very hard: 6.0
+strong and pleasant breezes: 6.0
+calm & squally: 0.0
+strong breezes and variable also squally: 6.0
+good  breezes: 3.0
+stong: 6.0
+middling breezes: nan
+brisk trade wonds: 5.0
+loght: 2.0
+

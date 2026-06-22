@@ -1,0 +1,402 @@
+=== Log Start ===
+
+==== 2026-06-16 14:52:07.580838 ====
+Compared IDs: 149731 vs 149732
+Action: Dropped 149732
+Key field differences:
+ - ID: 149731  ≠  149732
+ - Latitude: 52 40 S  ≠  52 51 S
+ - Longitude: 180 00 E  ≠  171 56 W
+ - Wind Direction: NNE  ≠  N by W
+ - Wind Speed/Force: Light breezes  ≠  Fresh gales
+ - Ship Heading/Course: E  ≠  E by N
+
+==== 2026-06-16 14:52:51.649177 ====
+Compared IDs: 149178 vs 149812
+Action: Dropped 149812
+Key field differences:
+ - ID: 149178  ≠  149812
+ - Latitude: 17 28 N  ≠  49 10 S
+ - Longitude: 117 00 W  ≠  nan
+ - Wind Direction: NE by N  ≠  NNW
+ - Wind Speed/Force: Fresh trades  ≠  Fresh breezes
+ - Ship Heading/Course: NW and NW by W  ≠  W
+ - Page: 147  ≠  189
+
+==== 2026-06-16 14:53:07.768786 ====
+Compared IDs: 86104 vs 86105
+Action: Dropped 86104
+Key field differences:
+ - ID: 86104  ≠  86105
+ - Latitude: 20 49 N  ≠  20 45 N
+ - Longitude: 156 19 W  ≠  155 45 W
+ - Landmark: nan  ≠  "at 7am the high lands of (Hawaii) bearing south distant 50 miles at 10am made the high land of (Maui) bearing west"
+
+==== 2026-06-16 14:53:09.538220 ====
+Compared IDs: 136933 vs 136934
+Action: Dropped 136934
+Key field differences:
+ - ID: 136933  ≠  136934
+ - Wind Direction: ESE  ≠  nan
+ - Wind Speed/Force: Moderate Winds  ≠  nan
+
+==== 2026-06-16 14:53:12.527839 ====
+Compared IDs: 144531 vs 144532
+Action: Dropped 144532
+Key field differences:
+ - ID: 144531  ≠  144532
+ - Latitude: 23 40 N  ≠  25 14 N
+ - Longitude: 54 22 W  ≠  56 27 W
+ - Ship Sightings: "Saw a Brigg"  ≠  nan
+ - Ship Heading/Course: NW 1/2 N  ≠  NW
+
+==== 2026-06-16 14:53:20.912590 ====
+Compared IDs: 130594 vs 130410
+Action: Dropped 130594
+Key field differences:
+ - ID: 130594  ≠  130410
+ - Ship Heading/Course: W  ≠  SW
+
+==== 2026-06-16 14:53:27.767216 ====
+Compared IDs: 156325 vs 156326
+Action: Dropped 156326
+Key field differences:
+ - ID: 156325  ≠  156326
+ - Latitude: 31 15 S  ≠  31 02 S
+ - Longitude: 175 45 W  ≠  175 50 W
+ - Wind Direction: W by S  ≠  N
+ - Wind Speed/Force: Strong winds  ≠  Light winds
+ - Ship Heading/Course: S by W  ≠  NNW
+
+==== 2026-06-16 14:53:43.678597 ====
+Compared IDs: 128139 vs 128140
+Action: Dropped 128140
+Key field differences:
+ - ID: 128139  ≠  128140
+ - Wind Speed/Force: Good Breeze  ≠  Strong Breeze
+ - Page: 163  ≠  nan
+
+==== 2026-06-16 14:53:50.245912 ====
+Compared IDs: 150186 vs 150782
+Action: Dropped 150186
+Key field differences:
+ - ID: 150186  ≠  150782
+ - Latitude: nan  ≠  47 42 S
+ - Longitude: nan  ≠  70 19 E
+ - Wind Direction: SE  ≠  WNW
+ - Wind Speed/Force: Moderate Breeze  ≠  Heavy Gale
+ - Page: 65  ≠  133
+
+==== 2026-06-16 14:53:51.648259 ====
+Compared IDs: 150187 vs 150783
+Action: Dropped 150187
+Key field differences:
+ - ID: 150187  ≠  150783
+ - Latitude: nan  ≠  48 06 S
+ - Longitude: nan  ≠  70 06 E
+ - Wind Direction: NE  ≠  nan
+ - Wind Speed/Force: Light Breeze  ≠  Strong Breeze
+ - Ship Heading/Course: nan  ≠  WSW
+ - Page: 65  ≠  133
+
+==== 2026-06-16 14:53:53.480148 ====
+Compared IDs: 150188 vs 150784
+Action: Dropped 150784
+Key field differences:
+ - ID: 150188  ≠  150784
+ - Latitude: 43 58 S  ≠  nan
+ - Longitude: 22 44 W  ≠  nan
+ - Wind Direction: N  ≠  NNW
+ - Page: 66  ≠  133
+
+==== 2026-06-16 14:53:54.819232 ====
+Compared IDs: 150189 vs 150785
+Action: Dropped 150785
+Key field differences:
+ - ID: 150189  ≠  150785
+ - Latitude: 43 44 S  ≠  nan
+ - Wind Direction: W  ≠  NW
+ - Wind Speed/Force: Moderate Breeze  ≠  Fresh Gale
+ - Page: 66  ≠  134
+
+==== 2026-06-16 14:53:55.928157 ====
+Compared IDs: 150190 vs 150786
+Action: Dropped 150190
+Key field differences:
+ - ID: 150190  ≠  150786
+ - Latitude: nan  ≠  47 40 S
+ - Longitude: nan  ≠  70 09 E
+ - Wind Direction: N  ≠  WNW
+ - Wind Speed/Force: Light Breeze  ≠  Moderate Breeze
+ - Page: 66  ≠  134
+
+==== 2026-06-16 14:54:03.306620 ====
+Compared IDs: 150191 vs 150787
+Action: Dropped 150787
+Key field differences:
+ - ID: 150191  ≠  150787
+ - Wind Direction: W  ≠  NW
+ - Wind Speed/Force: Fresh Gale  ≠  Strong Breeze
+ - Page: 66  ≠  134
+
+==== 2026-06-16 14:54:05.069564 ====
+Compared IDs: 150192 vs 150788
+Action: Dropped 150788
+Key field differences:
+ - ID: 150192  ≠  150788
+ - Latitude: 43 29 S  ≠  nan
+ - Longitude: 22 03 W  ≠  nan
+ - Wind Direction: W  ≠  nan
+ - Wind Speed/Force: Strong Gale  ≠  Moderate Breeze
+ - Ship Heading/Course: S  ≠  nan
+ - Page: 67  ≠  134
+
+==== 2026-06-16 14:54:06.209024 ====
+Compared IDs: 150193 vs 150789
+Action: Dropped 150789
+Key field differences:
+ - ID: 150193  ≠  150789
+ - Wind Direction: W  ≠  nan
+ - Wind Speed/Force: Moderate Gale  ≠  Light Breeze
+ - Page: 67  ≠  134
+
+==== 2026-06-16 14:54:07.280051 ====
+Compared IDs: 150194 vs 150790
+Action: Dropped 150790
+Key field differences:
+ - ID: 150194  ≠  150790
+ - Wind Direction: W  ≠  nan
+ - Wind Speed/Force: Moderate Gale  ≠  Moderate Breeze
+ - Page: 67  ≠  134
+
+==== 2026-06-16 14:54:08.567129 ====
+Compared IDs: 150195 vs 150791
+Action: Dropped 150791
+Key field differences:
+ - ID: 150195  ≠  150791
+ - Latitude: 44 14 S  ≠  nan
+ - Longitude: 22 53 W  ≠  nan
+ - Wind Direction: SW  ≠  NW
+ - Wind Speed/Force: Fresh Breeze  ≠  Fresh Gales
+ - Ship Heading/Course: WNW  ≠  nan
+ - Page: 67  ≠  135
+
+==== 2026-06-16 14:54:14.348494 ====
+Compared IDs: 150196 vs 150792
+Action: Dropped 150792
+Key field differences:
+ - ID: 150196  ≠  150792
+ - Wind Direction: SE  ≠  N
+ - Wind Speed/Force: Moderate Breeze  ≠  Moderate Gale
+ - Page: 68  ≠  135
+
+==== 2026-06-16 14:54:20.603997 ====
+Compared IDs: 150197 vs 150793
+Action: Dropped 150793
+Key field differences:
+ - ID: 150197  ≠  150793
+ - Wind Direction: E  ≠  nan
+ - Wind Speed/Force: Light Breeze  ≠  Strong Breeze
+ - Page: 68  ≠  135
+
+==== 2026-06-16 14:54:21.985922 ====
+Compared IDs: 150198 vs 150794
+Action: Dropped 150794
+Key field differences:
+ - ID: 150198  ≠  150794
+ - Latitude: 43 13 S  ≠  nan
+ - Longitude: 19 58 W  ≠  nan
+ - Wind Direction: W  ≠  NW
+ - Wind Speed/Force: Fresh Breeze  ≠  Strong Gales
+ - Ship Heading/Course: ESE  ≠  nan
+ - Page: 68  ≠  135
+
+==== 2026-06-16 14:54:23.069175 ====
+Compared IDs: 150199 vs 150795
+Action: Dropped 150795
+Key field differences:
+ - ID: 150199  ≠  150795
+ - Latitude: 43 51 S  ≠  nan
+ - Longitude: 19 28 W  ≠  nan
+ - Wind Direction: N  ≠  NNW
+ - Wind Speed/Force: Moderate Breeze  ≠  Strong Breeze
+ - Ship Heading/Course: S  ≠  nan
+ - Page: 68  ≠  135
+
+==== 2026-06-16 14:54:24.184263 ====
+Compared IDs: 150200 vs 150796
+Action: Dropped 150796
+Key field differences:
+ - ID: 150200  ≠  150796
+ - Latitude: 42 25 S  ≠  nan
+ - Longitude: 18 43 W  ≠  nan
+ - Wind Direction: SW  ≠  NNW
+ - Wind Speed/Force: Fresh Breeze  ≠  Fresh Gale
+ - Ship Heading/Course: NE by N  ≠  nan
+ - Page: 68  ≠  136
+
+==== 2026-06-16 14:54:25.194497 ====
+Compared IDs: 150201 vs 150797
+Action: Dropped 150797
+Key field differences:
+ - ID: 150201  ≠  150797
+ - Latitude: 41 50 S  ≠  nan
+ - Longitude: 16 50 W  ≠  nan
+ - Wind Direction: NW  ≠  nan
+ - Wind Speed/Force: Light Breeze  ≠  nan
+ - Ship Heading/Course: NE  ≠  nan
+ - Page: 69  ≠  136
+
+==== 2026-06-16 14:55:15.972737 ====
+Compared IDs: 150202 vs 150798
+Failed to edit 150798
+Key field differences:
+ - ID: 150202  ≠  150798
+ - Latitude: 39 35 S  ≠  48 20 S
+ - Longitude: 15 40 W  ≠  71 07 E
+ - Wind Direction: N  ≠  NW
+ - Wind Speed/Force: Fresh Breeze  ≠  Fresh Gale
+ - Ship Heading/Course: NE by E  ≠  nan
+ - Page: 69  ≠  136
+
+==== 2026-06-16 14:55:37.290808 ====
+Compared IDs: 150203 vs 150799
+Action: Dropped 150799
+Key field differences:
+ - ID: 150203  ≠  150799
+ - Latitude: 37 14 S  ≠  47 47 S
+ - Longitude: 14 18 W  ≠  71 23 E
+ - Wind Direction: WNW  ≠  NW
+ - Sea State: nan  ≠  Large Swell
+ - Page: 69  ≠  136
+
+==== 2026-06-16 14:55:39.352543 ====
+Compared IDs: 150204 vs 150800
+Action: Dropped 150204
+Key field differences:
+ - ID: 150204  ≠  150800
+ - Latitude: 36 36 S  ≠  46 50 S
+ - Longitude: nan  ≠  70 43 E
+ - Wind Direction: W  ≠  WSW
+ - Wind Speed/Force: Strong Breeze  ≠  Light Breeze
+ - Ship Heading/Course: ENE  ≠  nan
+ - Page: 69  ≠  136
+
+==== 2026-06-16 14:55:40.619251 ====
+Compared IDs: 150205 vs 150801
+Action: Dropped 150801
+Key field differences:
+ - ID: 150205  ≠  150801
+ - Latitude: 36 53 S  ≠  nan
+ - Longitude: 11 11 W  ≠  nan
+ - Wind Direction: W by N  ≠  nan
+ - Wind Speed/Force: Strong Breeze  ≠  Strong Gale
+ - Landmark: "The Land in Sight to the SW "  ≠  nan
+ - Ship Heading/Course: SSE  ≠  nan
+ - Page: 70  ≠  137
+
+==== 2026-06-16 14:55:42.369374 ====
+Compared IDs: 150206 vs 150802
+Action: Dropped 150802
+Key field differences:
+ - ID: 150206  ≠  150802
+ - Latitude: 36 13 S  ≠  nan
+ - Longitude: 07 04 W  ≠  nan
+ - Wind Direction: NW  ≠  nan
+ - Wind Speed/Force: Fresh Gales  ≠  Moderate Breeze
+ - Ship Heading/Course: E by S  ≠  nan
+ - Page: 70  ≠  137
+
+==== 2026-06-16 14:55:45.921583 ====
+Compared IDs: 150207 vs 150803
+Action: Dropped 150803
+Key field differences:
+ - ID: 150207  ≠  150803
+ - Latitude: 35 37 S  ≠  43 38 S
+ - Longitude: 02 23 W  ≠  71 53 E
+ - Wind Direction: NNW  ≠  NW
+ - Wind Speed/Force: Fresh Gales  ≠  Moderate Gale
+ - Ship Heading/Course: E by S  ≠  NE by E
+ - Page: 70  ≠  137
+
+==== 2026-06-16 14:55:46.785973 ====
+Compared IDs: 150208 vs 150804
+Action: Dropped 150804
+Key field differences:
+ - ID: 150208  ≠  150804
+ - Latitude: 35 24 S  ≠  40 41 S
+ - Longitude: 01 06 W  ≠  74 05 E
+ - Wind Direction: W  ≠  NW
+ - Wind Speed/Force: Strong Breeze  ≠  Fresh Gale
+ - Ship Heading/Course: E by S  ≠  NE
+ - Page: 70  ≠  137
+
+==== 2026-06-16 14:55:48.870705 ====
+Compared IDs: 150209 vs 150805
+Action: Dropped 150209
+Key field differences:
+ - ID: 150209  ≠  150805
+ - Latitude: 34 57 S  ≠  39 00 S
+ - Longitude: 04 15 W  ≠  76 25 E
+ - Wind Direction: WSW  ≠  W
+ - Wind Speed/Force: Strong Winds  ≠  Moderate Breeze
+ - Landmark: nan  ≠  " Saw the Island of St.paul's Bearing E 1/2 N Distant about 60 Miles"
+ - Ship Heading/Course: ESE  ≠  E
+ - Page: 71  ≠  137
+
+==== 2026-06-16 14:55:50.414657 ====
+Compared IDs: 150210 vs 150806
+Action: Dropped 150806
+Key field differences:
+ - ID: 150210  ≠  150806
+ - Latitude: 35 10 S  ≠  nan
+ - Longitude: 05 37 W  ≠  nan
+ - Wind Direction: S  ≠  nan
+ - Page: 71  ≠  138
+
+==== 2026-06-16 14:55:51.403755 ====
+Compared IDs: 150211 vs 150807
+Action: Dropped 150807
+Key field differences:
+ - ID: 150211  ≠  150807
+ - Longitude: 08 35 E  ≠  nan
+ - Wind Direction: WNW  ≠  nan
+ - Wind Speed/Force: Light Breeze  ≠  Moderate Breeze
+ - Ship Heading/Course: SE by S  ≠  nan
+ - Page: 71  ≠  138
+
+==== 2026-06-16 14:55:52.250001 ====
+Compared IDs: 150212 vs 150808
+Action: Dropped 150808
+Key field differences:
+ - ID: 150212  ≠  150808
+ - Latitude: 35 22 S  ≠  nan
+ - Longitude: 11 28 E  ≠  nan
+ - Wind Direction: NNW  ≠  nan
+ - Wind Speed/Force: Strong Breeze  ≠  Light Breeze
+ - Ship Heading/Course: SE by E 1/2 E  ≠  nan
+ - Page: 71  ≠  138
+
+==== 2026-06-16 14:55:53.192101 ====
+Compared IDs: 150213 vs 150809
+Action: Dropped 150809
+Key field differences:
+ - ID: 150213  ≠  150809
+ - Latitude: 35 33 S  ≠  nan
+ - Longitude: 13 30 E  ≠  nan
+ - Wind Direction: S  ≠  NNW
+ - Wind Speed/Force: Light Airs  ≠  Moderate Breeze
+ - Ship Heading/Course: ESE  ≠  nan
+ - Page: 72  ≠  138
+
+==== 2026-06-16 14:56:32.788502 ====
+Compared IDs: 150202 vs 150798
+Action: Dropped 150798
+Key field differences:
+ - ID: 150202  ≠  150798
+ - Latitude: 39 35 S  ≠  48 20 S
+ - Longitude: 15 40 W  ≠  71 07 E
+ - Wind Direction: N  ≠  NW
+ - Wind Speed/Force: Fresh Breeze  ≠  Fresh Gale
+ - Ship Heading/Course: NE by E  ≠  nan
+ - Page: 69  ≠  136

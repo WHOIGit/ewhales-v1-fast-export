@@ -1,0 +1,34 @@
+#ignore exports that used previous workflow
+#---just want to keep this repo consistent to have a coherent record of total entries and 
+#changes made in and out of the database
+20240820_export  
+20250323_export  
+20250606_export
+
+._*
+
+#same with archived notebooks
+*/archived/
+
+#ignore pycache files
+*/__pycache__/
+*.pyc
+*.jupyter
+.jupyter*
+
+#ignore checkpoints
+*/.ipynb_checkpoints
+
+#and most of the csv/pkl files to prevent cluttering the repo
+*/CSV_files/*
+#keep Tier1 and Tier4
+# !*/CSV_files/Tier1.csv  
+# !*/CSV_files/Final_tier4_2025-08-26.csv
+
+*/PKL/*
+#keep Tier1 and Tier4
+# !*/PKL/Tier1.pkl
+# !*/PKL/Final_tier4_2025-08-26.pkl
+
+#only keep manuscript figs
+*/figures/*

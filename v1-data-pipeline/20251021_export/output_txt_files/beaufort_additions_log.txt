@@ -1,0 +1,53 @@
+==== Beaufort additions 2025-10-30 17:26:43 ====
+hard gales & heavy squalls: 8.0
+stiff br: 6.0
+fine bree: 5.0
+stiff winds: 6.0
+blowing stiff: 6.0
+fresh gales and squalls: 8.0
+strong breezes and squally: 6.0
+calm baffling winds: 1.0
+strong winds and squalls: 6.0
+blowing stiff winds: 6.0
+blowing stiff breezes: 6.0
+fresh and squally: 5.0
+wind and squally: 6.0
+blowing heavy winds: 6.0
+exceedingly heavy gales: 9.0
+exceedingly hard gales: 9.0
+calm and baffling airs: 0.0
+fine bbreezes: 5.0
+heavy flaws winds: 6.0
+blowing fresh breezes: 5.0
+2 reef mainsail breezes: 5.0
+find wholesail breezes: 45.0
+good wholesail: 4.0
+strong winds and pleasant: 6.0
+light and clam: 1.0
+gently gales: 3.0
+fresh winds & somewhat squally: 5.0
+moderate weather: nan
+light breeze and squally: 2.0
+rather light trades: 1.0
+light & variable winds: 2.0
+gently gale: 3.0
+violent gale: 9.0
+"a brisk breeze or a gentle gale": 7.0
+light wind and baffling: 2.0
+moderate breezes`: 4.0
+stong trades: 6.0
+baffling fresh breezes: nan
+starong breezes: 6.0
+modearte: 4.0
+lignt winds: 2.0
+strong winds and heavy sea: 6.0
+"strongest gale we have had the voyage": nan
+strong cold winds: 6.0
+strong brezees: 6.0
+blowing like the devil: 9.0
+
+==== Beaufort additions 2025-11-03 11:30:36 ====
+fresh breezes and squally: nan
+fresh whole topsail: nan
+blowing strong winds: 6.0
+

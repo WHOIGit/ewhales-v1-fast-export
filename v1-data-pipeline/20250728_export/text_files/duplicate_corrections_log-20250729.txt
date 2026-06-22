@@ -1,0 +1,417 @@
+=== Log Start ===
+
+==== 2025-07-30 12:25:58.210031 ====
+Compared IDs: 124857 vs 124855
+Action: No changes made
+Comment: ship sighting noted
+Key field differences:
+ - ID: 124857  ≠  124855
+ - Wind Speed/Force: Fresh Breezes  ≠  Fine Breezes
+ - Ship Sightings: nan  ≠  Spoke the Rainbow
+
+==== 2025-07-30 12:26:50.622072 ====
+Compared IDs: 125778 vs 125777
+Action: Dropped 125777
+Key field differences:
+ - ID: 125778  ≠  125777
+ - Weather: Clear  ≠  nan
+
+==== 2025-07-30 12:34:33.337517 ====
+Compared IDs: 126038 vs 126037
+Action: Dropped 126038
+Key field differences:
+ - ID: 126038  ≠  126037
+ - Wind Direction: W  ≠  N W
+ - Ship Heading/Course: E  ≠  E N
+
+==== 2025-07-30 12:34:52.925877 ====
+Compared IDs: 125602 vs 125601
+Action: Dropped 125602
+Key field differences:
+ - ID: 125602  ≠  125601
+
+==== 2025-07-30 12:35:14.611523 ====
+Compared IDs: 122416 vs 122415
+Action: Dropped 122416
+Key field differences:
+ - ID: 122416  ≠  122415
+
+==== 2025-07-30 12:35:25.113010 ====
+Compared IDs: 128925 vs 128924
+Action: Edited 128925
+ - Updated Entry Date to: 1893-04-26
+Key field differences:
+ - ID: 128925  ≠  128924
+ - Latitude: 12 52 S  ≠  14 00 S
+ - Longitude: 18 50 W  ≠  16 36 W
+ - Wind Direction: ESE  ≠  SE
+ - Wind Speed/Force: Strong Wind  ≠  Light Wind
+
+==== 2025-07-30 12:35:51.724333 ====
+Compared IDs: 86105 vs 86104
+Action: No changes made
+Comment: noting land sighting
+Key field differences:
+ - ID: 86105  ≠  86104
+ - Latitude: 20 45 N  ≠  20 49 N
+ - Longitude: 155 45 W  ≠  156 19 W
+ - Miscellaneous Observations: lat. & long. by reported land sighting  ≠  nan
+ - Landmark: "at 7am the high lands of (Hawaii) bearing south distant 50 miles at 10am made the high land of (Maui) bearing west"  ≠  nan
+
+==== 2025-07-30 12:36:33.361515 ====
+Compared IDs: 129224 vs 129223
+Failed to update Entry Date: day is out of range for month: 129224 1834-07-26, at position 0
+Key field differences:
+ - ID: 129224  ≠  129223
+ - Latitude: 36 26N  ≠  38 42 N
+ - Longitude: 31 00 W  ≠  30 52 W
+ - Weather: cloudy  ≠  fine pleasant
+ - Wind Speed/Force: strong  ≠  stong
+
+==== 2025-07-30 12:37:59.953380 ====
+Compared IDs: 125207 vs 125206
+Action: Dropped 125206
+Key field differences:
+ - ID: 125207  ≠  125206
+
+==== 2025-07-30 12:41:25.967929 ====
+Compared IDs: 119340 vs 119337
+Action: Dropped 119340
+Key field differences:
+ - ID: 119340  ≠  119337
+ - Miscellaneous Observations: nan  ≠  Due to a previous mistake in the date, in the book, the days since May 1st are registered one day behind (he took notes for April 31th, which doesn't exist). Here, it was registered on the correct date.
+
+==== 2025-07-30 12:43:12.876998 ====
+Compared IDs: 121243 vs 120618
+Action: Dropped 121243
+Key field differences:
+ - ID: 121243  ≠  120618
+ - Weather: Pleasant Weather  ≠  pleasant weather
+ - Wind Direction: SSW  ≠  E
+ - Wind Speed/Force: Light Winds  ≠  strong winds
+ - Miscellaneous Observations: nan  ≠  Due to a previous mistake in the date, in the book, the days since May 1st are registered one day behind (he took notes for April 31th, which doesn't exist). Here, it was registered on the correct date.
+ - Page: 16  ≠  9
+
+==== 2025-07-30 12:43:19.224478 ====
+Compared IDs: 121245 vs 120619
+Action: Dropped 121245
+Key field differences:
+ - ID: 121245  ≠  120619
+ - Latitude: 30 00 S  ≠  nan
+ - Longitude: 17 00 W  ≠  nan
+ - Weather: Pleasant Weather  ≠  nan
+ - Wind Direction: N N W  ≠  nan
+ - Wind Speed/Force: Moderate breezes  ≠  fresh gales
+ - Miscellaneous Observations: nan  ≠  Due to a previous mistake in the date, in the book, the days since May 1st are registered one day behind (he took notes for April 31th, which doesn't exist). Here, it was registered on the correct date.
+ - Page: 16  ≠  9
+
+==== 2025-07-30 12:43:23.646842 ====
+Compared IDs: 121246 vs 120624
+Action: Dropped 121246
+Key field differences:
+ - ID: 121246  ≠  120624
+ - Latitude: nan  ≠  6 02 N
+ - Weather: Squally  ≠  pleasant weather
+ - Wind Direction: N N W  ≠  N E
+ - Wind Speed/Force: Fresh Gales  ≠  trades
+ - Miscellaneous Observations: nan  ≠  Due to a previous mistake in the date, in the book, the days since May 1st are registered one day behind (he took notes for April 31th, which doesn't exist). Here, it was registered on the correct date.
+ - Page: 18  ≠  10
+
+==== 2025-07-30 12:43:46.318032 ====
+Compared IDs: 121052 vs 121051
+Action: Dropped 121052
+Key field differences:
+ - ID: 121052  ≠  121051
+
+==== 2025-07-30 12:44:55.201838 ====
+Compared IDs: 121054 vs 121053
+Action: Dropped 121053
+Key field differences:
+ - ID: 121054  ≠  121053
+ - Miscellaneous Observations: The following pages (13 and 14) are damaged. There are journal pasted on it.  ≠  The following one (pg. 13) is unreadable. There are some journal pasted on it.
+
+==== 2025-07-30 12:47:41.664823 ====
+Compared IDs: 122871 vs 122869
+Action: Dropped 122869
+Key field differences:
+ - ID: 122871  ≠  122869
+ - Miscellaneous Observations: The page numbers are completely messy. I am adding the page that is written on the book, even though the numbering order is wrong.  ≠  Very damaged part of the page.
+ - Page: 37  ≠  36
+
+==== 2025-07-30 12:47:58.122841 ====
+Compared IDs: 122916 vs 122914
+Action: Dropped 122914
+Key field differences:
+ - ID: 122916  ≠  122914
+
+==== 2025-07-30 12:49:30.591869 ====
+Compared IDs: 123016 vs 123015
+Action: Dropped 123016
+Key field differences:
+ - ID: 123016  ≠  123015
+
+==== 2025-07-30 12:50:40.971629 ====
+Compared IDs: 123026 vs 123023
+Action: Dropped 123026
+Key field differences:
+ - ID: 123026  ≠  123023
+
+==== 2025-07-30 12:51:47.334611 ====
+Compared IDs: 123209 vs 123208
+Action: Dropped 123209
+Key field differences:
+ - ID: 123209  ≠  123208
+
+==== 2025-07-30 12:52:08.213131 ====
+Compared IDs: 123396 vs 123395
+Action: Edited 123395
+ - Updated Entry Date to: 1846-12-22
+Key field differences:
+ - ID: 123396  ≠  123395
+ - Weather: rain storm  ≠  heavy rain
+ - Wind Direction: N W  ≠  northward
+ - Wind Speed/Force: strong gales  ≠  strong breezes
+
+==== 2025-07-30 12:52:35.088592 ====
+Compared IDs: 123401 vs 123400
+Action: Dropped 123401
+Key field differences:
+ - ID: 123401  ≠  123400
+
+==== 2025-07-30 12:52:47.135601 ====
+Compared IDs: 123406 vs 123405
+Action: Dropped 123406
+Key field differences:
+ - ID: 123406  ≠  123405
+ - Wind Direction: Westward  ≠  westward
+
+==== 2025-07-30 12:52:54.917848 ====
+Compared IDs: 123419 vs 123418
+Action: Edited 123418
+ - Updated Entry Date to: 1847-01-12
+Key field differences:
+ - ID: 123419  ≠  123418
+ - Wind Direction: W N W  ≠  N W
+
+==== 2025-07-30 12:53:28.874102 ====
+Compared IDs: 125163 vs 125162
+Action: Dropped 125163
+Key field differences:
+ - ID: 125163  ≠  125162
+
+==== 2025-07-30 12:54:59.961012 ====
+Compared IDs: 125166 vs 125164
+Action: No changes made
+Comment: no clear reason for date repeat. different weather. will likely be dropped due to no coords. leaving for now
+Key field differences:
+ - ID: 125166  ≠  125164
+ - Weather: calm weather  and pleasant  ≠  heavy rain storm
+ - Wind Direction: nan  ≠  Northward
+ - Wind Speed/Force: nan  ≠  strong gale
+
+==== 2025-07-30 12:55:41.732296 ====
+Compared IDs: 122166 vs 122165
+Action: Dropped 122166
+Key field differences:
+ - ID: 122166  ≠  122165
+
+==== 2025-07-30 12:55:51.715187 ====
+Compared IDs: 122860 vs 122859
+Action: Dropped 122860
+Key field differences:
+ - ID: 122860  ≠  122859
+
+==== 2025-07-30 12:57:13.991140 ====
+Compared IDs: 122932 vs 122931
+Action: Dropped 122931
+Key field differences:
+ - ID: 122932  ≠  122931
+ - Weather: Squalls of Rain  ≠  Squally
+
+==== 2025-07-30 12:57:27.167616 ====
+Compared IDs: 123257 vs 123256
+Action: Dropped 123257
+Key field differences:
+ - ID: 123257  ≠  123256
+
+==== 2025-07-30 12:57:37.392080 ====
+Compared IDs: 123454 vs 123453
+Action: Dropped 123454
+Key field differences:
+ - ID: 123454  ≠  123453
+
+==== 2025-07-30 12:57:42.100421 ====
+Compared IDs: 123630 vs 123629
+Action: No changes made
+Comment: ship sighting noted
+Key field differences:
+ - ID: 123630  ≠  123629
+ - Latitude: 30 54 N  ≠  30 51 N
+ - Longitude: 47 50 E  ≠  47 30 E
+ - Ship Sightings: Saw the Barclay  ≠  nan
+
+==== 2025-07-30 13:00:52.129628 ====
+Compared IDs: 127343 vs 127342
+Action: No changes made
+Comment: no reason for repeat. different weather obs but no coords
+Key field differences:
+ - ID: 127343  ≠  127342
+ - Weather: Fine  ≠  Good
+ - Wind Direction: S West  ≠  N East
+ - Ship Heading/Course: nan  ≠  S West
+
+==== 2025-07-30 13:34:29.204787 ====
+Compared IDs: 127626 vs 127471
+Action: Edited 127626
+ - Updated Entry Date to: 1867-02-07
+Key field differences:
+ - ID: 127626  ≠  127471
+ - Weather: Fine  ≠  Calm
+ - Page: nan  ≠  93
+
+==== 2025-07-30 13:35:13.521150 ====
+Compared IDs: 127694 vs 127664
+Action: Edited 127694
+ - Updated Entry Date to: 1867-04-08
+Key field differences:
+ - ID: 127694  ≠  127664
+ - Weather: nan  ≠  Nearly Calm
+ - Wind Speed/Force: Strong Breeze  ≠  nan
+ - Page: 109  ≠  nan
+
+==== 2025-07-30 13:35:41.040396 ====
+Compared IDs: 127777 vs 127776
+Action: Dropped 127777
+Key field differences:
+ - ID: 127777  ≠  127776
+
+==== 2025-07-30 13:36:06.216979 ====
+Compared IDs: 127926 vs 127897
+Action: Edited 127926
+ - Updated Entry Date to: 1867-11-30
+Key field differences:
+ - ID: 127926  ≠  127897
+ - Weather: nan  ≠  Fine
+ - Miscellaneous Observations: No weather information in this entry  ≠  nan
+ - Page: 149  ≠  nan
+
+==== 2025-07-30 13:36:45.514713 ====
+Compared IDs: 127927 vs 127899
+Action: Edited 127927
+ - Updated Entry Date to: 1867-12-01
+Key field differences:
+ - ID: 127927  ≠  127899
+ - Weather: Cloudy  ≠  Fine
+
+==== 2025-07-30 13:37:26.764234 ====
+Compared IDs: 128153 vs 128123
+Action: Edited 128153
+ - Updated Entry Date to: 1868-03-14
+Key field differences:
+ - ID: 128153  ≠  128123
+ - Weather: nan  ≠  Nearly Dead Calm
+ - Wind Direction: N East  ≠  nan
+ - Wind Speed/Force: Good Breeze  ≠  nan
+ - Ship Heading/Course: W South  ≠  nan
+ - Page: nan  ≠  161
+
+==== 2025-07-30 13:40:09.123564 ====
+Compared IDs: 128140 vs 128139
+Action: No changes made
+Comment: Probably leap year issue/keeper adding more dates to feb? clarify with researcher
+Key field differences:
+ - ID: 128140  ≠  128139
+ - Wind Speed/Force: Strong Breeze  ≠  Good Breeze
+ - Page: nan  ≠  163
+
+==== 2025-07-30 13:40:52.884571 ====
+Compared IDs: 128431 vs 128397
+Action: Edited 128431
+ - Updated Entry Date to: 1868-11-14
+Key field differences:
+ - ID: 128431  ≠  128397
+ - Weather: Fine  ≠  nan
+ - Wind Direction: nan  ≠  East
+ - Wind Speed/Force: nan  ≠  Good Breeze
+ - Ship Heading/Course: nan  ≠  N N East
+
+==== 2025-07-30 13:41:19.208953 ====
+Compared IDs: 128555 vs 128554
+Action: No changes made
+Comment: Same suspected too many feb days issue
+Key field differences:
+ - ID: 128555  ≠  128554
+
+==== 2025-07-30 13:41:54.801853 ====
+Compared IDs: 128649 vs 128618
+Action: Edited 128618
+ - Updated Entry Date to: 1869-05-06
+Key field differences:
+ - ID: 128649  ≠  128618
+ - Weather: Fine  ≠  Heavy Snow
+ - Wind Direction: nan  ≠  S West
+ - Wind Speed/Force: nan  ≠  Strong Breeze
+
+==== 2025-07-30 13:42:21.805593 ====
+Compared IDs: 128699 vs 128698
+Action: Edited 128699
+ - Updated Entry Date to: 1869-07-19
+Key field differences:
+ - ID: 128699  ≠  128698
+ - Weather: nan  ≠  Good
+ - Wind Direction: S West  ≠  S East
+ - Wind Speed/Force: Stiff Breeze  ≠  Fine Breeze
+
+==== 2025-07-30 13:42:43.752296 ====
+Compared IDs: 129051 vs 128723
+Action: Edited 129051
+ - Updated Entry Date to: 1869-09-08
+Key field differences:
+ - ID: 129051  ≠  128723
+ - Weather: nan  ≠  Thick Fog
+ - Wind Direction: N East  ≠  S West
+
+==== 2025-07-30 13:43:44.425522 ====
+Compared IDs: 129054 vs 128726
+Action: Edited 129054
+ - Updated Entry Date to: 1869-09-11
+Key field differences:
+ - ID: 129054  ≠  128726
+ - Weather: nan  ≠  Thick Fog
+ - Wind Direction: N East  ≠  nan
+ - Wind Speed/Force: Good Breeze  ≠  nan
+
+==== 2025-07-30 13:44:07.719514 ====
+Compared IDs: 129120 vs 129088
+Action: Edited 129120
+ - Updated Entry Date to: 1869-11-16
+Key field differences:
+ - ID: 129120  ≠  129088
+ - Weather: Fine  ≠  nan
+ - Wind Direction: nan  ≠  S East
+ - Wind Speed/Force: Light Breeze  ≠  nan
+
+==== 2025-07-30 13:44:29.902058 ====
+Compared IDs: 129122 vs 129090
+Action: Edited 129122
+ - Updated Entry Date to: 1869-11-18
+Key field differences:
+ - ID: 129122  ≠  129090
+ - Weather: Fine  ≠  Good
+ - Wind Direction: nan  ≠  N West
+ - Wind Speed/Force: nan  ≠  Good Breeze
+ - Ship Heading/Course: nan  ≠  S S East
+
+==== 2025-07-30 13:44:56.272384 ====
+Compared IDs: 129135 vs 129104
+Action: Edited 129135
+ - Updated Entry Date to: 1869-12-02
+Key field differences:
+ - ID: 129135  ≠  129104
+ - Weather: nan  ≠  Dead Calm
+
+==== 2025-07-30 13:45:40.355443 ====
+Compared IDs: 122302 vs 122301
+Action: Dropped 122302
+Key field differences:
+ - ID: 122302  ≠  122301
