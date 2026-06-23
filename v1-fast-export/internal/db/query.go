@@ -123,8 +123,10 @@ func processBatches(db *sql.DB, cfg *config.Config, postIDs []uint, onProgress f
 				pivotData.LogbookEntries = append(pivotData.LogbookEntries, entry)
 			} else {
 				lb := models.Logbook{
-					PostID:    id,
-					LogbookID: logbookIDVal,
+					PostID:     id,
+					LogbookID:  logbookIDVal,
+					Researcher: props["researcher"],
+					Repository: props["repository"],
 				}
 				pivotData.Logbooks = append(pivotData.Logbooks, lb)
 			}

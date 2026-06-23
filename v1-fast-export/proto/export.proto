@@ -33,6 +33,8 @@ message ExportResponse {
 message Logbook {
   uint64 post_id = 1;
   string logbook_id = 2;
+  string researcher = 3;
+  string repository = 4;
 }
 
 message LogbookEntry {
