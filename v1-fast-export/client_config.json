@@ -8,7 +8,18 @@
   "server_address": "localhost:8443",
   "post_type_to_meta_keys": {
     "logbook": [
-      "logbook_id"
+      "flag",
+      "home_meridian",
+      "home_port",
+      "logbook_id",
+      "master",
+      "met_instruments",
+      "repository",
+      "repository_call_no",
+      "researcher",
+      "service_type",
+      "sherman_code",
+      "vessel"
     ],
     "logbook_entry": [
       "logbook_id",

@@ -35,6 +35,15 @@ message Logbook {
   string logbook_id = 2;
   string researcher = 3;
   string repository = 4;
+  string vessel = 5;
+  string flag = 6;
+  string home_port = 7;
+  string master = 8;
+  string home_meridian = 9;
+  string service_type = 10;
+  string met_instruments = 11;
+  string sherman_code = 12;
+  string repository_call_no = 13;
 }
 
 message LogbookEntry {

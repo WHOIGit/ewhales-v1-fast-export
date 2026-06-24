@@ -40,7 +40,7 @@ func TestQueryPivotData(t *testing.T) {
 	cfg := &config.Config{
 		Table: "logswp_postmeta",
 		PostTypeToMetaKeys: map[string][]string{
-			"logbook":       {"logbook_id"},
+			"logbook":       {"logbook_id", "flag", "home_meridian", "home_port", "master", "met_instruments", "repository", "repository_call_no", "researcher", "service_type", "sherman_code", "vessel"},
 			"logbook_entry": {"logbook_id", "cloud_cover", "sea_state"},
 		},
 	}
@@ -121,7 +121,7 @@ func TestQueryPivotDataRealistic(t *testing.T) {
 	cfg := &config.Config{
 		Table: "logswp_postmeta",
 		PostTypeToMetaKeys: map[string][]string{
-			"logbook":       {"logbook_id"},
+			"logbook":       {"logbook_id", "flag", "home_meridian", "home_port", "master", "met_instruments", "repository", "repository_call_no", "researcher", "service_type", "sherman_code", "vessel"},
 			"logbook_entry": {"logbook_id", "cloud_cover", "sea_state", "depth", "latitude", "longitude", "ship_heading", "wind_direction", "wind_force"},
 		},
 	}

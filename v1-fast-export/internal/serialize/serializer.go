@@ -50,11 +50,19 @@ func (s *CSVSerializer) Serialize(data models.PivotData, onProgress func(process
 	defer lbFile.Close()
 
 	lbWriter := csv.NewWriter(lbFile)
-	if err := lbWriter.Write([]string{getHeader("post_id"), getHeader("logbook_id"), getHeader("researcher"), getHeader("repository")}); err != nil {
+	if err := lbWriter.Write([]string{
+		getHeader("post_id"), getHeader("logbook_id"), getHeader("researcher"), getHeader("repository"),
+		getHeader("vessel"), getHeader("flag"), getHeader("home_port"), getHeader("master"), getHeader("home_meridian"),
+		getHeader("service_type"), getHeader("met_instruments"), getHeader("sherman_code"), getHeader("repository_call_no"),
+	}); err != nil {
 		return err
 	}
 	for _, lb := range data.Logbooks {
-		if err := lbWriter.Write([]string{fmt.Sprint(lb.PostID), lb.LogbookID, lb.Researcher, lb.Repository}); err != nil {
+		if err := lbWriter.Write([]string{
+			fmt.Sprint(lb.PostID), lb.LogbookID, lb.Researcher, lb.Repository,
+			lb.Vessel, lb.Flag, lb.HomePort, lb.Master, lb.HomeMeridian,
+			lb.ServiceType, lb.MetInstruments, lb.ShermanCode, lb.RepositoryCallNo,
+		}); err != nil {
 			return err
 		}
 		processed++

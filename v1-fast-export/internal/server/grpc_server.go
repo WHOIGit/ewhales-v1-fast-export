@@ -69,8 +69,19 @@ func (s *exportServer) ExportData(stream pb.ExporterService_ExportDataServer) er
 		if batch != nil {
 			for _, lb := range batch.Logbooks {
 				pivotData.Logbooks = append(pivotData.Logbooks, models.Logbook{
-					PostID:    uint(lb.PostId),
-					LogbookID: lb.LogbookId,
+					PostID:           uint(lb.PostId),
+					LogbookID:        lb.LogbookId,
+					Researcher:       lb.Researcher,
+					Repository:       lb.Repository,
+					Vessel:           lb.Vessel,
+					Flag:             lb.Flag,
+					HomePort:         lb.HomePort,
+					Master:           lb.Master,
+					HomeMeridian:     lb.HomeMeridian,
+					ServiceType:      lb.ServiceType,
+					MetInstruments:   lb.MetInstruments,
+					ShermanCode:      lb.ShermanCode,
+					RepositoryCallNo: lb.RepositoryCallNo,
 				})
 			}
 			for _, entry := range batch.Entries {

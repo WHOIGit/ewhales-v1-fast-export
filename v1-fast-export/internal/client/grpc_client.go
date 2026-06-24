@@ -85,8 +85,19 @@ func (c *APIClient) SendBatch(data *models.PivotData) error {
 		batch := &pb.ExportBatch{}
 		for _, lb := range data.Logbooks[i:end] {
 			batch.Logbooks = append(batch.Logbooks, &pb.Logbook{
-				PostId:    uint64(lb.PostID),
-				LogbookId: lb.LogbookID,
+				PostId:           uint64(lb.PostID),
+				LogbookId:        lb.LogbookID,
+				Researcher:       lb.Researcher,
+				Repository:       lb.Repository,
+				Vessel:           lb.Vessel,
+				Flag:             lb.Flag,
+				HomePort:         lb.HomePort,
+				Master:           lb.Master,
+				HomeMeridian:     lb.HomeMeridian,
+				ServiceType:      lb.ServiceType,
+				MetInstruments:   lb.MetInstruments,
+				ShermanCode:      lb.ShermanCode,
+				RepositoryCallNo: lb.RepositoryCallNo,
 			})
 		}
 

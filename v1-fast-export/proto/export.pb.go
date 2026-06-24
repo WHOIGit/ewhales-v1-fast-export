@@ -260,13 +260,22 @@ func (x *ExportResponse) GetMessage() string {
 }
 
 type Logbook struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	PostId        uint64                 `protobuf:"varint,1,opt,name=post_id,json=postId,proto3" json:"post_id,omitempty"`
-	LogbookId     string                 `protobuf:"bytes,2,opt,name=logbook_id,json=logbookId,proto3" json:"logbook_id,omitempty"`
-	Researcher    string                 `protobuf:"bytes,3,opt,name=researcher,proto3" json:"researcher,omitempty"`
-	Repository    string                 `protobuf:"bytes,4,opt,name=repository,proto3" json:"repository,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	PostId           uint64                 `protobuf:"varint,1,opt,name=post_id,json=postId,proto3" json:"post_id,omitempty"`
+	LogbookId        string                 `protobuf:"bytes,2,opt,name=logbook_id,json=logbookId,proto3" json:"logbook_id,omitempty"`
+	Researcher       string                 `protobuf:"bytes,3,opt,name=researcher,proto3" json:"researcher,omitempty"`
+	Repository       string                 `protobuf:"bytes,4,opt,name=repository,proto3" json:"repository,omitempty"`
+	Vessel           string                 `protobuf:"bytes,5,opt,name=vessel,proto3" json:"vessel,omitempty"`
+	Flag             string                 `protobuf:"bytes,6,opt,name=flag,proto3" json:"flag,omitempty"`
+	HomePort         string                 `protobuf:"bytes,7,opt,name=home_port,json=homePort,proto3" json:"home_port,omitempty"`
+	Master           string                 `protobuf:"bytes,8,opt,name=master,proto3" json:"master,omitempty"`
+	HomeMeridian     string                 `protobuf:"bytes,9,opt,name=home_meridian,json=homeMeridian,proto3" json:"home_meridian,omitempty"`
+	ServiceType      string                 `protobuf:"bytes,10,opt,name=service_type,json=serviceType,proto3" json:"service_type,omitempty"`
+	MetInstruments   string                 `protobuf:"bytes,11,opt,name=met_instruments,json=metInstruments,proto3" json:"met_instruments,omitempty"`
+	ShermanCode      string                 `protobuf:"bytes,12,opt,name=sherman_code,json=shermanCode,proto3" json:"sherman_code,omitempty"`
+	RepositoryCallNo string                 `protobuf:"bytes,13,opt,name=repository_call_no,json=repositoryCallNo,proto3" json:"repository_call_no,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *Logbook) Reset() {
@@ -323,6 +332,69 @@ func (x *Logbook) GetResearcher() string {
 func (x *Logbook) GetRepository() string {
 	if x != nil {
 		return x.Repository
+	}
+	return ""
+}
+
+func (x *Logbook) GetVessel() string {
+	if x != nil {
+		return x.Vessel
+	}
+	return ""
+}
+
+func (x *Logbook) GetFlag() string {
+	if x != nil {
+		return x.Flag
+	}
+	return ""
+}
+
+func (x *Logbook) GetHomePort() string {
+	if x != nil {
+		return x.HomePort
+	}
+	return ""
+}
+
+func (x *Logbook) GetMaster() string {
+	if x != nil {
+		return x.Master
+	}
+	return ""
+}
+
+func (x *Logbook) GetHomeMeridian() string {
+	if x != nil {
+		return x.HomeMeridian
+	}
+	return ""
+}
+
+func (x *Logbook) GetServiceType() string {
+	if x != nil {
+		return x.ServiceType
+	}
+	return ""
+}
+
+func (x *Logbook) GetMetInstruments() string {
+	if x != nil {
+		return x.MetInstruments
+	}
+	return ""
+}
+
+func (x *Logbook) GetShermanCode() string {
+	if x != nil {
+		return x.ShermanCode
+	}
+	return ""
+}
+
+func (x *Logbook) GetRepositoryCallNo() string {
+	if x != nil {
+		return x.RepositoryCallNo
 	}
 	return ""
 }
@@ -524,7 +596,7 @@ const file_proto_export_proto_rawDesc = "" +
 	"\aentries\x18\x02 \x03(\v2\x1f.ewhales.export.v1.LogbookEntryR\aentries\"D\n" +
 	"\x0eExportResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"\x81\x01\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"\xa4\x03\n" +
 	"\aLogbook\x12\x17\n" +
 	"\apost_id\x18\x01 \x01(\x04R\x06postId\x12\x1d\n" +
 	"\n" +
@@ -534,7 +606,17 @@ const file_proto_export_proto_rawDesc = "" +
 	"researcher\x12\x1e\n" +
 	"\n" +
 	"repository\x18\x04 \x01(\tR\n" +
-	"repository\"\xa3\x04\n" +
+	"repository\x12\x16\n" +
+	"\x06vessel\x18\x05 \x01(\tR\x06vessel\x12\x12\n" +
+	"\x04flag\x18\x06 \x01(\tR\x04flag\x12\x1b\n" +
+	"\thome_port\x18\a \x01(\tR\bhomePort\x12\x16\n" +
+	"\x06master\x18\b \x01(\tR\x06master\x12#\n" +
+	"\rhome_meridian\x18\t \x01(\tR\fhomeMeridian\x12!\n" +
+	"\fservice_type\x18\n" +
+	" \x01(\tR\vserviceType\x12'\n" +
+	"\x0fmet_instruments\x18\v \x01(\tR\x0emetInstruments\x12!\n" +
+	"\fsherman_code\x18\f \x01(\tR\vshermanCode\x12,\n" +
+	"\x12repository_call_no\x18\r \x01(\tR\x10repositoryCallNo\"\xa3\x04\n" +
 	"\fLogbookEntry\x12\x17\n" +
 	"\apost_id\x18\x01 \x01(\x04R\x06postId\x12\x1d\n" +
 	"\n" +

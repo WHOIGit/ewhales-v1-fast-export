@@ -4,10 +4,19 @@ package models
 // In the EAV model, it is identified when a post_id has a 'logbook_id'
 // meta_value that contains text (like a name or year range).
 type Logbook struct {
-	PostID     uint   `json:"post_id"`
-	LogbookID  string `json:"logbook_id"`
-	Researcher string `json:"researcher"`
-	Repository string `json:"repository"`
+	PostID           uint   `json:"post_id"`
+	LogbookID        string `json:"logbook_id"`
+	Researcher       string `json:"researcher"`
+	Repository       string `json:"repository"`
+	Vessel           string `json:"vessel"`
+	Flag             string `json:"flag"`
+	HomePort         string `json:"home_port"`
+	Master           string `json:"master"`
+	HomeMeridian     string `json:"home_meridian"`
+	ServiceType      string `json:"service_type"`
+	MetInstruments   string `json:"met_instruments"`
+	ShermanCode      string `json:"sherman_code"`
+	RepositoryCallNo string `json:"repository_call_no"`
 }
 
 // LogbookEntry represents an entry within a logbook.
