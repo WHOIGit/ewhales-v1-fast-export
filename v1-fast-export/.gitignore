@@ -1,2 +1,8 @@
 *.crt
 *.key
+ewhales-client
+ewhales-server
+ewhales-local
+server
+*.sqlite
+*.db
