@@ -82,23 +82,8 @@ func (c *APIClient) SendBatch(data *models.PivotData) error {
 			end = len(data.Logbooks)
 		}
 
-		batch := &pb.ExportBatch{}
-		for _, lb := range data.Logbooks[i:end] {
-			batch.Logbooks = append(batch.Logbooks, &pb.Logbook{
-				PostId:           uint64(lb.PostID),
-				LogbookId:        lb.LogbookID,
-				Researcher:       lb.Researcher,
-				Repository:       lb.Repository,
-				Vessel:           lb.Vessel,
-				Flag:             lb.Flag,
-				HomePort:         lb.HomePort,
-				Master:           lb.Master,
-				HomeMeridian:     lb.HomeMeridian,
-				ServiceType:      lb.ServiceType,
-				MetInstruments:   lb.MetInstruments,
-				ShermanCode:      lb.ShermanCode,
-				RepositoryCallNo: lb.RepositoryCallNo,
-			})
+		batch := &pb.ExportBatch{
+			Logbooks: data.Logbooks[i:end],
 		}
 
 		if err := c.stream.Send(&pb.ExportRequest{
@@ -117,28 +102,8 @@ func (c *APIClient) SendBatch(data *models.PivotData) error {
 			end = len(data.LogbookEntries)
 		}
 
-		batch := &pb.ExportBatch{}
-		for _, entry := range data.LogbookEntries[i:end] {
-			batch.Entries = append(batch.Entries, &pb.LogbookEntry{
-				PostId:        uint64(entry.PostID),
-				LogbookId:     uint64(entry.LogbookID),
-				Bottom:        entry.Bottom,
-				CloudCover:    entry.CloudCover,
-				Depth:         entry.Depth,
-				DepthUnit:     entry.DepthUnit,
-				EntryDate:     entry.EntryDate,
-				Landmark:      entry.Landmark,
-				Latitude:      entry.Latitude,
-				LocalTime:     entry.LocalTime,
-				Longitude:     entry.Longitude,
-				Page:          entry.Page,
-				SeaState:      entry.SeaState,
-				ShipHeading:   entry.ShipHeading,
-				ShipSightings: entry.ShipSightings,
-				Weather:       entry.Weather,
-				WindDirection: entry.WindDirection,
-				WindForce:     entry.WindForce,
-			})
+		batch := &pb.ExportBatch{
+			Entries: data.LogbookEntries[i:end],
 		}
 
 		if err := c.stream.Send(&pb.ExportRequest{

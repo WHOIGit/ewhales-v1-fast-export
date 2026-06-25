@@ -29,9 +29,9 @@ func (s *CSVSerializer) Serialize(data models.PivotData, onProgress func(process
 	totalItems := len(data.Logbooks) + len(data.LogbookEntries)
 	processed := 0
 	// Build Logbook mapping for entries
-	logbookNameMap := make(map[uint]string)
+	logbookNameMap := make(map[uint64]string)
 	for _, lb := range data.Logbooks {
-		logbookNameMap[lb.PostID] = lb.LogbookID
+		logbookNameMap[lb.PostId] = lb.LogbookId
 	}
 
 	// Helper to get header
@@ -59,7 +59,7 @@ func (s *CSVSerializer) Serialize(data models.PivotData, onProgress func(process
 	}
 	for _, lb := range data.Logbooks {
 		if err := lbWriter.Write([]string{
-			fmt.Sprint(lb.PostID), lb.LogbookID, lb.Researcher, lb.Repository,
+			fmt.Sprint(lb.PostId), lb.LogbookId, lb.Researcher, lb.Repository,
 			lb.Vessel, lb.Flag, lb.HomePort, lb.Master, lb.HomeMeridian,
 			lb.ServiceType, lb.MetInstruments, lb.ShermanCode, lb.RepositoryCallNo,
 		}); err != nil {
@@ -94,13 +94,13 @@ func (s *CSVSerializer) Serialize(data models.PivotData, onProgress func(process
 		return err
 	}
 	for _, lbe := range data.LogbookEntries {
-		logbookName := logbookNameMap[lbe.LogbookID]
+		logbookName := logbookNameMap[lbe.LogbookId]
 		if logbookName == "" {
-			logbookName = fmt.Sprint(lbe.LogbookID) // Fallback if missing
+			logbookName = fmt.Sprint(lbe.LogbookId) // Fallback if missing
 		}
 
 		record := []string{
-			fmt.Sprint(lbe.PostID), logbookName, lbe.Bottom, lbe.CloudCover,
+			fmt.Sprint(lbe.PostId), logbookName, lbe.Bottom, lbe.CloudCover,
 			lbe.Depth, lbe.DepthUnit, lbe.EntryDate, lbe.Landmark, lbe.Latitude,
 			lbe.LocalTime, lbe.Longitude, lbe.Page, lbe.SeaState, lbe.ShipHeading,
 			lbe.ShipSightings, lbe.Weather, lbe.WindDirection, lbe.WindForce,

@@ -9,6 +9,7 @@ import (
 
 	"github.com/agl/ewhales-v1-exporter/internal/config"
 	"github.com/agl/ewhales-v1-exporter/internal/models"
+	pb "github.com/agl/ewhales-v1-exporter/proto"
 )
 
 // QueryPivotData performs the database interactions to extract and pivot the EAV data.
@@ -100,9 +101,9 @@ func processBatches(db *sql.DB, cfg *config.Config, postIDs []uint, onProgress f
 			}
 			logbookIDVal := props["logbook_id"]
 			if numID, err := strconv.ParseUint(logbookIDVal, 10, 64); err == nil {
-				entry := models.LogbookEntry{
-					PostID:        id,
-					LogbookID:     uint(numID),
+				entry := &pb.LogbookEntry{
+					PostId:        uint64(id),
+					LogbookId:     numID,
 					Bottom:        props["bottom"],
 					CloudCover:    props["cloud_cover"],
 					Depth:         props["depth"],
@@ -116,15 +117,15 @@ func processBatches(db *sql.DB, cfg *config.Config, postIDs []uint, onProgress f
 					SeaState:      props["sea_state"],
 					ShipHeading:   props["ship_heading"],
 					ShipSightings: props["ship_sightings"],
-					Weather: props["weather"],
+					Weather:       props["weather"],
 					WindDirection: props["wind_direction"],
 					WindForce:     props["wind_force"],
 				}
 				pivotData.LogbookEntries = append(pivotData.LogbookEntries, entry)
 			} else {
-				lb := models.Logbook{
-					PostID:           id,
-					LogbookID:        logbookIDVal,
+				lb := &pb.Logbook{
+					PostId:           uint64(id),
+					LogbookId:        logbookIDVal,
 					Researcher:       props["researcher"],
 					Repository:       props["repository"],
 					Vessel:           props["vessel"],

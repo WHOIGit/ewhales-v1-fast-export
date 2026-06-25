@@ -67,45 +67,8 @@ func (s *exportServer) ExportData(stream pb.ExporterService_ExportDataServer) er
 
 		batch := req.GetBatch()
 		if batch != nil {
-			for _, lb := range batch.Logbooks {
-				pivotData.Logbooks = append(pivotData.Logbooks, models.Logbook{
-					PostID:           uint(lb.PostId),
-					LogbookID:        lb.LogbookId,
-					Researcher:       lb.Researcher,
-					Repository:       lb.Repository,
-					Vessel:           lb.Vessel,
-					Flag:             lb.Flag,
-					HomePort:         lb.HomePort,
-					Master:           lb.Master,
-					HomeMeridian:     lb.HomeMeridian,
-					ServiceType:      lb.ServiceType,
-					MetInstruments:   lb.MetInstruments,
-					ShermanCode:      lb.ShermanCode,
-					RepositoryCallNo: lb.RepositoryCallNo,
-				})
-			}
-			for _, entry := range batch.Entries {
-				pivotData.LogbookEntries = append(pivotData.LogbookEntries, models.LogbookEntry{
-					PostID:        uint(entry.PostId),
-					LogbookID:     uint(entry.LogbookId),
-					Bottom:        entry.Bottom,
-					CloudCover:    entry.CloudCover,
-					Depth:         entry.Depth,
-					DepthUnit:     entry.DepthUnit,
-					EntryDate:     entry.EntryDate,
-					Landmark:      entry.Landmark,
-					Latitude:      entry.Latitude,
-					LocalTime:     entry.LocalTime,
-					Longitude:     entry.Longitude,
-					Page:          entry.Page,
-					SeaState:      entry.SeaState,
-					ShipHeading:   entry.ShipHeading,
-					ShipSightings: entry.ShipSightings,
-					Weather:       entry.Weather,
-					WindDirection: entry.WindDirection,
-					WindForce:     entry.WindForce,
-				})
-			}
+			pivotData.Logbooks = append(pivotData.Logbooks, batch.Logbooks...)
+			pivotData.LogbookEntries = append(pivotData.LogbookEntries, batch.Entries...)
 		}
 	}
 

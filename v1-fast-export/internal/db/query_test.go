@@ -55,11 +55,11 @@ func TestQueryPivotData(t *testing.T) {
 	if len(pivotData.Logbooks) != 1 {
 		t.Errorf("Expected 1 Logbook, got %d", len(pivotData.Logbooks))
 	} else {
-		if pivotData.Logbooks[0].LogbookID != "Test Logbook 1888" {
-			t.Errorf("Expected LogbookID to be 'Test Logbook 1888', got %s", pivotData.Logbooks[0].LogbookID)
+		if pivotData.Logbooks[0].LogbookId != "Test Logbook 1888" {
+			t.Errorf("Expected LogbookID to be 'Test Logbook 1888', got %s", pivotData.Logbooks[0].LogbookId)
 		}
-		if pivotData.Logbooks[0].PostID != 100 {
-			t.Errorf("Expected Logbook PostID to be 100, got %d", pivotData.Logbooks[0].PostID)
+		if pivotData.Logbooks[0].PostId != 100 {
+			t.Errorf("Expected Logbook PostID to be 100, got %d", pivotData.Logbooks[0].PostId)
 		}
 	}
 
@@ -67,11 +67,11 @@ func TestQueryPivotData(t *testing.T) {
 		t.Errorf("Expected 1 LogbookEntry, got %d", len(pivotData.LogbookEntries))
 	} else {
 		entry := pivotData.LogbookEntries[0]
-		if entry.PostID != 200 {
-			t.Errorf("Expected LogbookEntry PostID to be 200, got %d", entry.PostID)
+		if entry.PostId != 200 {
+			t.Errorf("Expected LogbookEntry PostID to be 200, got %d", entry.PostId)
 		}
-		if entry.LogbookID != 100 {
-			t.Errorf("Expected LogbookEntry LogbookID to be 100, got %d", entry.LogbookID)
+		if entry.LogbookId != 100 {
+			t.Errorf("Expected LogbookEntry LogbookID to be 100, got %d", entry.LogbookId)
 		}
 		if entry.CloudCover != "Partly Cloudy" {
 			t.Errorf("Expected CloudCover 'Partly Cloudy', got '%s'", entry.CloudCover)
@@ -138,9 +138,9 @@ func TestQueryPivotDataRealistic(t *testing.T) {
 	}
 
 	// Build a map of Logbook PostIDs to verify entries point to valid logbooks
-	validLogbooks := make(map[uint]bool)
+	validLogbooks := make(map[uint64]bool)
 	for _, lb := range pivotData.Logbooks {
-		validLogbooks[lb.PostID] = true
+		validLogbooks[lb.PostId] = true
 	}
 
 	if len(pivotData.LogbookEntries) == 0 {
@@ -148,8 +148,8 @@ func TestQueryPivotDataRealistic(t *testing.T) {
 	}
 
 	for i, entry := range pivotData.LogbookEntries {
-		if !validLogbooks[entry.LogbookID] {
-			t.Errorf("Entry %d (PostID %d) points to unknown LogbookID %d", i, entry.PostID, entry.LogbookID)
+		if !validLogbooks[entry.LogbookId] {
+			t.Errorf("Entry %d (PostID %d) points to unknown LogbookID %d", i, entry.PostId, entry.LogbookId)
 		}
 	}
 }
