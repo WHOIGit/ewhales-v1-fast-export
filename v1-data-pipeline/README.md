@@ -421,8 +421,25 @@ Once the IDs are clean, we group the entries by `LogBook ID` to compute `Total_E
 We now create the overview and individual voyage visualizations. Our `plot_logbook_with_options(df, logbook_id, ...)` function is capable of creating all required figure versions by adjusting the logbooks included in the `input_df` param or changing the `color_by` option from `"Entry Date"`or `"BF Value"`.
 
 ### Sync to drive
-I have built a utility script which uploads the finalized metadata, tiered datasets, and figures to Drive. This ensures we keep versions of each dataset somewhere safe. The sync will need to be reconfigured to use new credentials but hat isn't too tricky. The sync scripts use rclone, which you can install from pip or conda. To reconfigure for new credentials, run rclone config and set up a new Google Drive remote named whaling_logbooks_GDrive — it'll walk you through the OAuth flow in your terminal. Once that's done, the sync_data.sh and sync_metadata.sh scripts in utils/ should work as-is.
 
+I have built a Python utility script (`gdrive_upload.py`) which uploads the finalized metadata, tiered datasets, and figures to Google Drive. This ensures we keep versions of each dataset somewhere safe. The upload script is a standalone script that uses the Google Drive API directly, allowing for recursive directory creation, parallel uploads, and interactive progress bars.
+
+To configure the script, you will need a Google OAuth Client Secret file named `credentials.json` placed in the `v1-data-pipeline` directory.
+
+**Basic Usage:**
+```bash
+python gdrive_upload.py --folder-id <GDrive_Folder_ID> --source <local_dir> --dest <remote_subdir>
+```
+
+**Key Features & Flags:**
+- **Authentication**: On the first run, the script will present a URL for you to visit in your browser to authorize access to your Google Drive. Once authorized, it caches a `token.json` file for future runs without needing to log in again. If you are running on a remote server, it binds to `0.0.0.0:8000` by default; you can adjust the port and hostname using `--port <N>` and `--hostname <name>`.
+- **File Filtering**: The script supports `rclone`-style filtering rules. 
+  - Use `--exclude "pattern"` to ignore specific directories or files (e.g. `--exclude "**/.ipynb_checkpoints/**"`).
+  - Use `--include "pattern"` to only upload specific files (e.g. `--include "Tier*.csv"`). If any `--include` is specified, everything else is automatically excluded.
+- **Progress Tracking**: Add the `--show-progress` flag to display overall upload progress as well as individual file upload status.
+- **Parallel Uploads**: By default, it uses 5 parallel workers. You can adjust this using `--workers <N>`.
+
+Once your `credentials.json` is in place, you can update your sync shell scripts (`sync_data.sh` and `sync_metadata.sh`) to utilize this Python script.
 ---
 
 ## Output Directory Reference

@@ -128,6 +128,44 @@ fi
     else:
         print("Skipping pre-commit hook setup.")
 
+def check_and_install_rclone():
+    rclone_path = shutil.which("rclone")
+    if rclone_path:
+        print(f"rclone found at: {rclone_path}")
+        return rclone_path
+
+    print("rclone binary not found in PATH.")
+    if prompt_user("Would you like to auto-install rclone to ~/bin?"):
+        print("Installing rclone...")
+        import tempfile
+        import zipfile
+        try:
+            rclone_url = "https://downloads.rclone.org/rclone-current-linux-amd64.zip"
+            with tempfile.TemporaryDirectory() as tmpdir:
+                zip_path = os.path.join(tmpdir, "rclone.zip")
+                urllib.request.urlretrieve(rclone_url, zip_path)
+                with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+                    zip_ref.extractall(tmpdir)
+                
+                # Find the extracted rclone binary
+                for root, dirs, files in os.walk(tmpdir):
+                    if "rclone" in files:
+                        rclone_binary = os.path.join(root, "rclone")
+                        target_dir = os.path.join(os.path.expanduser("~"), "bin")
+                        os.makedirs(target_dir, exist_ok=True)
+                        target_path = os.path.join(target_dir, "rclone")
+                        shutil.copy2(rclone_binary, target_path)
+                        os.chmod(target_path, 0o755)
+                        print(f"rclone installed successfully to {target_path}.")
+                        print("Make sure ~/bin is in your PATH.")
+                        return target_path
+        except Exception as e:
+            print(f"Failed to install rclone: {e}")
+            return None
+    else:
+        print("Skipping rclone installation.")
+        return None
+
 def main():
     parser = argparse.ArgumentParser(description="Bootstrap a new data pipeline export directory.")
     parser.add_argument('csv_path', type=str, help="Path to the exported CSV file from WordPress")
@@ -212,6 +250,9 @@ def main():
     if conda_executable:
         setup_conda_env(conda_executable)
         setup_pre_commit_hook(conda_executable)
+
+    print("Checking rclone setup...")
+    check_and_install_rclone()
 
     print("Bootstrap complete!")
 

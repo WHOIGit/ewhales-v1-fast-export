@@ -155,6 +155,137 @@ def infill_missing_data(df, columns_to_infill, days_missing, max_distance_km):
     return df
     
 
+def infill_missing_data_vectorized(df, columns_to_infill, days_missing, max_distance_km):
+    """
+    Vectorized version of infill_missing_data.
+    Infill missing Latitude/Longitude values for specified columns and gap duration.
+    """
+    print(f"  - Infilling {days_missing}-day gaps for columns: {columns_to_infill}...")
+
+    KM_PER_DEG_LAT = 111.32  # average km per degree latitude
+
+    # Ensure columns exist
+    if 'Infilled' not in df.columns:
+        df['Infilled'] = False
+    if 'gap_distance_km' not in df.columns:
+        df['gap_distance_km'] = np.nan
+
+    df_sorted = df.sort_values(by=['LogBook ID', 'Entry Date Time']).copy()
+    df_sorted.reset_index(inplace=True)  # keep original index in 'index'
+
+    want_lat = 'Latitude_decimal' in columns_to_infill
+    want_lon = 'Longitude_decimal' in columns_to_infill
+    which = ('latlon' if (want_lat and want_lon) else
+             'lat' if want_lat else
+             'lon')
+
+    # =========================================================================
+    # 1. VECTORIZED GAP IDENTIFICATION
+    # =========================================================================
+    df_sorted['is_missing'] = df_sorted[columns_to_infill].isna().all(axis=1)
+
+    block_changes = (
+        (df_sorted['is_missing'] != df_sorted['is_missing'].shift()) | 
+        (df_sorted['LogBook ID'] != df_sorted['LogBook ID'].shift())
+    )
+    
+    df_sorted['block_id'] = block_changes.cumsum()
+
+    block_stats = df_sorted.groupby('block_id').agg(
+        is_missing=('is_missing', 'first'),
+        size=('block_id', 'size')
+    )
+
+    valid_blocks = block_stats[(block_stats['is_missing'] == True) & (block_stats['size'] == days_missing)].index
+
+    # =========================================================================
+    # 2. PROCESS ONLY THE VALID GAPS
+    # =========================================================================
+    for b_id in valid_blocks:
+        interior_seq_idx = df_sorted.index[df_sorted['block_id'] == b_id]
+        
+        start_idx = interior_seq_idx[0] - 1
+        end_idx = interior_seq_idx[-1] + 1
+
+        if start_idx < 0 or end_idx >= len(df_sorted):
+            continue
+            
+        logbook_id = df_sorted.at[interior_seq_idx[0], 'LogBook ID']
+        if df_sorted.at[start_idx, 'LogBook ID'] != logbook_id or df_sorted.at[end_idx, 'LogBook ID'] != logbook_id:
+            continue
+
+        interior_orig_idx = df_sorted.loc[interior_seq_idx, 'index']
+
+        if df.loc[interior_orig_idx, 'Infilled'].any():
+            continue
+
+        start_point = df_sorted.iloc[start_idx]
+        end_point   = df_sorted.iloc[end_idx]
+        gap_to_fill = df_sorted.iloc[interior_seq_idx]
+
+        other_cols = [c for c in ['Latitude_decimal', 'Longitude_decimal'] if c not in columns_to_infill]
+        if other_cols and not gap_to_fill[other_cols].notna().all().all():
+            continue
+
+        date_diff = (end_point['Entry Date Time'].date() - start_point['Entry Date Time'].date()).days
+        if date_diff != (days_missing + 1):
+            continue
+
+        lat1, lon1 = float(start_point['Latitude_decimal']), float(start_point['Longitude_decimal'])
+        lat2, lon2 = float(end_point['Latitude_decimal']),   float(end_point['Longitude_decimal'])
+
+        if which == 'latlon':
+            distance_km = geodesic((lat1, lon1), (lat2, lon2)).kilometers
+        elif which == 'lat':
+            distance_km = abs(lat2 - lat1) * KM_PER_DEG_LAT
+        else:  # 'lon'
+            dlon = lon2 - lon1
+            if dlon > 180:  dlon -= 360
+            if dlon < -180: dlon += 360
+            dlon = abs(dlon)
+            phi = np.deg2rad(0.5 * (lat1 + lat2))
+            km_per_deg_lon = KM_PER_DEG_LAT * np.cos(phi)
+            km_per_deg_lon = float(km_per_deg_lon) if km_per_deg_lon > 1e-6 else 0.0
+            distance_km = dlon * km_per_deg_lon
+
+        df.loc[interior_orig_idx, 'gap_distance_km'] = float(distance_km) if not np.isnan(distance_km) else np.nan
+        df.loc[interior_orig_idx, 'gap_days_missing'] = days_missing
+        df.loc[interior_orig_idx, 'gap_type'] = which
+
+        if np.isnan(distance_km) or distance_km > max_distance_km:
+            continue
+
+        window_for_interp = df_sorted.iloc[start_idx : end_idx + 1]
+        selection_for_interp = window_for_interp[['Latitude_decimal', 'Longitude_decimal']].copy()
+
+        if want_lon:
+            lon_series = selection_for_interp['Longitude_decimal']
+            if lon_series.iloc[0] < -170 and lon_series.iloc[-1] > 170:
+                lon_series = lon_series.apply(lambda x: x if x <= 0 else x - 360)
+            elif lon_series.iloc[0] > 170 and lon_series.iloc[-1] < -170:
+                lon_series = lon_series.apply(lambda x: x if x >= 0 else x + 360)
+            selection_for_interp['Longitude_decimal'] = lon_series
+
+        interpolated_values = selection_for_interp.interpolate(method='linear')
+
+        if want_lon:
+            if (selection_for_interp['Longitude_decimal'] < -180).any():
+                interpolated_values['Longitude_decimal'] += 360
+            elif (selection_for_interp['Longitude_decimal'] > 180).any():
+                interpolated_values['Longitude_decimal'] -= 360
+
+        update_values = interpolated_values.iloc[1:-1][columns_to_infill]
+        for col in columns_to_infill:
+            df.loc[interior_orig_idx, col] = update_values[col].values
+
+        df.loc[interior_orig_idx, 'Infilled'] = True
+        df.loc[interior_orig_idx, 'infill_days_missing'] = days_missing
+        df.loc[interior_orig_idx, 'infill_type'] = which
+        df.loc[interior_orig_idx, 'infill_distance_km'] = float(distance_km)
+
+    return df
+
+
 def calculate_statistical_significance(series1, series2, name1="Original", name2="New"):
     """
     Performs and prints the results of the Mann-Whitney U and Kruskal-Wallis tests.

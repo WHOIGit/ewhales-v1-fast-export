@@ -6,7 +6,14 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 META_FIGS_DIR="$SCRIPT_DIR/../meta_figs"
 CSV_DIR="$SCRIPT_DIR/../csv_files"
 HOME_DIR="/home/finn.wimberly"
-RCLONE="$HOME_DIR/bin/rclone"
+if command -v rclone >/dev/null 2>&1; then
+    RCLONE="rclone"
+elif [ -x "$HOME/bin/rclone" ]; then
+    RCLONE="$HOME/bin/rclone"
+else
+    echo "Error: rclone not found in PATH or at $HOME/bin/rclone" >&2
+    exit 1
+fi
 
 
 # Sync all whaling figures (exclude .ipynb_checkpoints)

@@ -46,7 +46,7 @@ MONTH="${STAMP:4:2}"
 DAY="${STAMP:6:2}"
 
 # 6. LOCAL PATHS - These are now inside the export folder
-HOME_DIR="/home/finn.wimberly"
+HOME_DIR="$HOME"
 CSV_DIR="$EXPORT_DIR/csv_files"
 PKL_DIR="$EXPORT_DIR/pkl_files"
 
@@ -58,12 +58,21 @@ echo "Syncing from: $EXPORT_DIR"
 echo "Targeting Remote: $REMOTE"
 
 # 8. Sync with rclone
-"$HOME_DIR/bin/rclone" copy "$CSV_DIR" "$REMOTE/csv_files" \
+if command -v rclone >/dev/null 2>&1; then
+    RCLONE="rclone"
+elif [ -x "$HOME/bin/rclone" ]; then
+    RCLONE="$HOME/bin/rclone"
+else
+    echo "Error: rclone not found in PATH or at $HOME/bin/rclone" >&2
+    exit 1
+fi
+
+"$RCLONE" copy "$CSV_DIR" "$REMOTE/csv_files" \
   --filter "- .ipynb_checkpoints/**" \
   --filter "+ Tier*.csv" \
   --filter "- *"
 
-"$HOME_DIR/bin/rclone" copy "$PKL_DIR" "$REMOTE/pkl_files" \
+"$RCLONE" copy "$PKL_DIR" "$REMOTE/pkl_files" \
   --filter "- .ipynb_checkpoints/**" \
   --filter "+ Tier*.pkl" \
   --filter "- *"
