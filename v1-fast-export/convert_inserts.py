@@ -27,7 +27,7 @@ def convert(input_file, output_file, batch_size=2000):
             stripped = line.strip()
             
             # Simple check for a typical mysqldump single row insert
-            if stripped.startswith("INSERT INTO `") and stripped.endswith(");"):
+            if stripped.startswith("INSERT INTO ") and stripped.endswith(");"):
                 val_idx = stripped.find(" VALUES")
                 if val_idx != -1:
                     paren_idx = stripped.find("(", val_idx)
